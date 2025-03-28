@@ -10,11 +10,12 @@ public class CameraController : MonoBehaviour
 
     Vector3 velocity;
 
-    //[Header("References")]
+    [Header("References")]
     Transform target;
 
     //[Space(10)]
     // RSO
+    [SerializeField] RSO_CameraDirection rsoCameraDirection;
     // RSF
     // RSP
 
@@ -33,6 +34,11 @@ public class CameraController : MonoBehaviour
     {
         rseSetCamTarget.RemoveListener(SetTarget);
         rseCameraShoke.RemoveListener(Shoke);
+    }
+
+    private void Start()
+    {
+        rsoCameraDirection.Value = transform.position.normalized;
     }
 
     private void Update()

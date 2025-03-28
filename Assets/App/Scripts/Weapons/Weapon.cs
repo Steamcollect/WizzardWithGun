@@ -24,7 +24,7 @@ public abstract class Weapon : MonoBehaviour
     }
     protected abstract bool _CanAttack();
 
-    public abstract void Attack();
+    public abstract void Attack(Vector3 lookDir);
 
     protected IEnumerator AttackCooldown()
     {

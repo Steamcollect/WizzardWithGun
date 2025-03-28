@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     //[Header("Settings")]
+    Vector3 lookDir;
 
     [Header("References")]
     [SerializeField] Transform weaponContent;
@@ -11,8 +12,9 @@ public class PlayerCombat : MonoBehaviour
 
     Camera cam;
 
-    //[Space(10)]
+    [Space(10)]
     // RSO
+    [SerializeField] RSO_PlayerCombatLookDir rsoPlayerCombatLookDir;
     // RSF
     // RSP
 
@@ -31,7 +33,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && currentWeapon.CanAttack())
         {
-            currentWeapon.Attack();
+            currentWeapon.Attack(lookDir);
         }
     }
 
@@ -39,7 +41,8 @@ public class PlayerCombat : MonoBehaviour
     {
         if (GetMousePositionOnGround(out Vector3 pos))
         {
-            Vector3 lookDir = pos - transform.position;
+            lookDir = (pos - transform.position).normalized;
+            rsoPlayerCombatLookDir.Value = lookDir;
 
             float angle = Mathf.Atan2(lookDir.z, lookDir.x) * Mathf.Rad2Deg;
 
