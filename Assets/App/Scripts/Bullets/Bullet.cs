@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public abstract class Bullet : MonoBehaviour
@@ -7,6 +6,8 @@ public abstract class Bullet : MonoBehaviour
     //[Header("Settings")]
     float moveSpeed;
     Vector3 moveDir;
+
+    string bulletName;
 
     [Header("References")]
     [SerializeField] Rigidbody rb;
@@ -21,7 +22,9 @@ public abstract class Bullet : MonoBehaviour
     // RSP
 
     //[Header("Input")]
-    //[Header("Output")]
+    [Header("Output")]
+    [SerializeField] RSE_ReturnBullet rseReturnbullet;
+    
     protected Action<Bullet, Collider> onTriggerEnter;
 
     private void Awake()
@@ -47,7 +50,7 @@ public abstract class Bullet : MonoBehaviour
         if (Vector3.Distance(transform.position, rsoPlayerTransform.Value.position) 
             > ssoGameplayConfig.maxBulletDistanceFromPlayer)
         {
-            Destroy(gameObject);
+            ReturnToQueue();
         }
     }
 
@@ -57,4 +60,11 @@ public abstract class Bullet : MonoBehaviour
         _OnTriggerEnter(other);
     }
     protected abstract void _OnTriggerEnter(Collider other);
+
+    public void SetName(string name) { bulletName = name; }
+    public string GetName() { return bulletName; }
+    public void ReturnToQueue()
+    {
+        rseReturnbullet.Call(this);
+    }
 }

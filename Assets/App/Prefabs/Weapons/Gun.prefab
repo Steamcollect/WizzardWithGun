@@ -54,12 +54,12 @@ MonoBehaviour:
   knockback: 50
   musleFlashDelay: 0.05
   camShokeRange: 0.3
-  bulletPrefab: {fileID: 8637765793346690241, guid: ac50ad9c738aca3449069e45f987cf16,
-    type: 3}
+  bulletName: GunBullet
   bulletSpawnPoint: {fileID: 8965165054671673803}
   musleFlashGO: {fileID: 1417109808454392131}
   anim: {fileID: 1954815279694622888}
   rseCamShoke: {fileID: 11400000, guid: 188569ae7349ed64e86840cac1ae9d6a, type: 2}
+  rsfGetBullet: {fileID: 11400000, guid: fc433a44ea4086442846378f0b9c94f7, type: 2}
 --- !u!95 &1954815279694622888
 Animator:
   serializedVersion: 7

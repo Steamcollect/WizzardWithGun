@@ -157,9 +157,10 @@ MonoBehaviour:
   ssoGameplayConfig: {fileID: 11400000, guid: e14667cab2b59954e86d7af5fb1f5ecf, type: 2}
   rsoCameraDirection: {fileID: 11400000, guid: 0e1cf036c6757564d80aa120b1476353, type: 2}
   rsoPlayerTransform: {fileID: 11400000, guid: 2bb91fd9d58091e4c96cf498c1a522bd, type: 2}
+  rseReturnbullet: {fileID: 11400000, guid: 493ea0e57174e2641a02ea67a139c73d, type: 2}
   trailMoveSpeed: 10
   trailMoveRange: 0.1
-  trail: {fileID: 6831444226377792986}
+  trail: {fileID: 3463715344622117492}
 --- !u!1 &5887942401388341678
 GameObject:
   m_ObjectHideFlags: 0

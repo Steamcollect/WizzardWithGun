@@ -12,7 +12,7 @@ public class Weapon_Gun : Weapon
     [SerializeField] float camShokeRange;
 
     [Header("References")]
-    [SerializeField] Bullet bulletPrefab;
+    [SerializeField] string bulletName;
     [SerializeField] Transform bulletSpawnPoint;
 
     [Space(10)]
@@ -26,7 +26,8 @@ public class Weapon_Gun : Weapon
 
     //[Header("Input")]
     [Header("Output")]
-    [SerializeField] RSE_CameraShoke rseCamShoke;    
+    [SerializeField] RSE_CameraShoke rseCamShoke;
+    [SerializeField] RSF_GetBullet rsfGetBullet;
 
     public override void Attack(Vector3 lookDir)
     {
@@ -34,10 +35,8 @@ public class Weapon_Gun : Weapon
         if(posY < .3f) posY = .3f;
         else if(posY > 1.3f) posY = 1.3f;
 
-        Bullet bullet = Instantiate(
-            bulletPrefab, 
-            new Vector3(bulletSpawnPoint.position.x, posY, bulletSpawnPoint.position.z), 
-            Quaternion.identity);
+        Bullet bullet = rsfGetBullet.Call(bulletName);
+        bullet.transform.position = new Vector3(bulletSpawnPoint.position.x, posY, bulletSpawnPoint.position.z);
 
         bullet.Setup(lookDir, bulletSpeed, OnBulletTouchSomething);
 
@@ -71,6 +70,6 @@ public class Weapon_Gun : Weapon
             onEntityTouch?.Invoke(entityHealth);
         }
 
-        Destroy(bullet.gameObject);
+        bullet.ReturnToQueue();
     }
 }

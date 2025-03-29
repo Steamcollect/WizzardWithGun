@@ -7,7 +7,7 @@ public class Bullet_Gun : Bullet
     [SerializeField] float trailMoveRange;
 
     [Header("References")]
-    [SerializeField] Transform trail;
+    [SerializeField] TrailRenderer trail;
 
     //[Space(10)]
     // RSO
@@ -17,10 +17,15 @@ public class Bullet_Gun : Bullet
     //[Header("Input")]
     //[Header("Output")]
 
+    private void OnEnable()
+    {
+        trail.ResetBounds();
+    }
+
     private void Update()
     {
         float posX = Mathf.Cos(Time.time * trailMoveSpeed) * trailMoveRange;
-        trail.localPosition = new Vector3(posX, trail.localPosition.y, trail.localPosition.z);
+        trail.transform.localPosition = new Vector3(posX, trail.transform.localPosition.y, trail.transform.localPosition.z);
     }
 
     protected override void _OnTriggerEnter(Collider other)
