@@ -5,6 +5,7 @@ public class Weapon_Gun : Weapon
 {
     [Header("Settings")]
     [SerializeField] float bulletSpeed;
+    [SerializeField] float knockback;
 
     [Space(5)]
     [SerializeField] float musleFlashDelay;
@@ -33,9 +34,12 @@ public class Weapon_Gun : Weapon
         if(posY < .3f) posY = .3f;
         else if(posY > 1.3f) posY = 1.3f;
 
-        Bullet bullet = Instantiate(bulletPrefab, new Vector3(bulletSpawnPoint.position.x, posY, bulletSpawnPoint.position.z), Quaternion.identity);
+        Bullet bullet = Instantiate(
+            bulletPrefab, 
+            new Vector3(bulletSpawnPoint.position.x, posY, bulletSpawnPoint.position.z), 
+            Quaternion.identity);
 
-        bullet.Setup(lookDir, bulletSpeed);
+        bullet.Setup(lookDir, bulletSpeed, OnBulletTouchSomething);
 
         StartCoroutine(AttackCooldown());
 
@@ -62,6 +66,11 @@ public class Weapon_Gun : Weapon
 
     void OnBulletTouchSomething(Bullet bullet, Collider touch)
     {
+        if(touch.TryGetComponent(out EntityHealth entityHealth))
+        {
+            onEntityTouch?.Invoke(entityHealth);
+        }
 
+        Destroy(bullet.gameObject);
     }
 }

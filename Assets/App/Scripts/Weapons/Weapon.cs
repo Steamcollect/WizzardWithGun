@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public abstract class Weapon : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float attackCooldown;
+    [SerializeField] int attackDamage;
 
     bool isOnAttackCooldown = false;
 
@@ -17,6 +19,8 @@ public abstract class Weapon : MonoBehaviour
 
     //[Header("Input")]
     //[Header("Output")]
+
+    public Action<EntityHealth> onEntityTouch;
 
     public bool CanAttack()
     {
@@ -32,4 +36,6 @@ public abstract class Weapon : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         isOnAttackCooldown = false;
     }
+
+    public int GetAttackDamage() { return attackDamage; }
 }

@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class PlayerMovement : EntityMovement
+public class GoblinMovement : EntityMovement
 {
     //[Header("Settings")]
+
     //[Header("References")]
 
     //[Space(10)]
     // RSO
+
     // RSF
     // RSP
 

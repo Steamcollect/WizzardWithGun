@@ -12,21 +12,24 @@ public abstract class Bullet : MonoBehaviour
     [SerializeField] Rigidbody rb;
 
     [Space(10)]
+    [SerializeField] SSO_GameplayConfig ssoGameplayConfig;
+
     // RSO
     [SerializeField] RSO_CameraDirection rsoCameraDirection;
+    [SerializeField] RSO_PlayerTransform rsoPlayerTransform;
     // RSF
     // RSP
 
     //[Header("Input")]
     //[Header("Output")]
-    public Action<Bullet, Collider> onTriggerEnter;
+    protected Action<Bullet, Collider> onTriggerEnter;
 
     private void Awake()
     {
         transform.forward = -rsoCameraDirection.Value;
     }
 
-    public void Setup(Vector3 moveDir, float moveSpeed)
+    public void Setup(Vector3 moveDir, float moveSpeed, Action<Bullet, Collider> onTouchSomething)
     {
         this.moveDir = new Vector3(moveDir.x, 0, moveDir.z);
 
@@ -34,11 +37,18 @@ public abstract class Bullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, angle);
 
         this.moveSpeed = moveSpeed;
+
+        onTriggerEnter += onTouchSomething;
     }
 
     private void FixedUpdate()
     {
         rb.linearVelocity = moveDir * moveSpeed;
+        if (Vector3.Distance(transform.position, rsoPlayerTransform.Value.position) 
+            > ssoGameplayConfig.maxBulletDistanceFromPlayer)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

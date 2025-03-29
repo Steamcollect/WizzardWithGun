@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93346e513fba054fb6f3fa85f57bca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDamage: 3
   weaponContent: {fileID: 91353543}
   currentWeapon: {fileID: 2020716625}
   rsoPlayerCombatLookDir: {fileID: 11400000, guid: 538744ce51ad19d41abdc8f5cfb61dcf,
@@ -764,7 +765,9 @@ GameObject:
   - component: {fileID: 1276640839}
   - component: {fileID: 1276640838}
   - component: {fileID: 1276640837}
+  - component: {fileID: 1276640841}
   - component: {fileID: 1276640840}
+  - component: {fileID: 1276640842}
   - component: {fileID: 1276640834}
   m_Layer: 0
   m_Name: Goblin
@@ -810,7 +813,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -873,11 +876,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8bd544c2d9d74489aed8e8a265da3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  attackRange: 1.5
-  maxSpeed: 15
+  moveSpeed: 25
+  maxSpeed: 12
+  rb: {fileID: 1276640838}
   anim: {fileID: 1276640834}
+--- !u!114 &1276640841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276640833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d231799e713b02e468a71e8ba6f43e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 2
+  movement: {fileID: 1276640840}
   rsoPlayerTransform: {fileID: 11400000, guid: 2bb91fd9d58091e4c96cf498c1a522bd, type: 2}
+--- !u!114 &1276640842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276640833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341a7c73354cc8d4880b1d46bc9fff9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
 --- !u!1 &1362659887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,11 +1199,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745652187916308197, guid: cfa0cff7c4643354983a9ddcbc41df65,
-        type: 3}
-      propertyPath: bulletSpeed
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7258700120060555758, guid: cfa0cff7c4643354983a9ddcbc41df65,
         type: 3}

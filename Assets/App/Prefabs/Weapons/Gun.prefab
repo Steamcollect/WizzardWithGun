@@ -49,7 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCooldown: 0.2
-  bulletSpeed: 5
+  attackDamage: 1
+  bulletSpeed: 15
+  knockback: 50
   musleFlashDelay: 0.05
   camShokeRange: 0.3
   bulletPrefab: {fileID: 8637765793346690241, guid: ac50ad9c738aca3449069e45f987cf16,

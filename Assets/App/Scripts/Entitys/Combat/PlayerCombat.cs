@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    //[Header("Settings")]
+    [Header("Settings")]
+    [SerializeField] int attackDamage;
+
     Vector3 lookDir;
 
     [Header("References")]
@@ -24,7 +26,8 @@ public class PlayerCombat : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
-        weaponContent.LookAt(-cam.transform.position);
+
+        SetWeapon(currentWeapon);
     }
 
     private void Update()
@@ -70,5 +73,16 @@ public class PlayerCombat : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void SetWeapon(Weapon weapon)
+    {
+        weaponContent.LookAt(-cam.transform.position);
+        weapon.onEntityTouch += OnEntityTouch;
+    }
+
+    void OnEntityTouch(EntityHealth entityHealth)
+    {
+        entityHealth.TakeDamage(attackDamage + currentWeapon.GetAttackDamage());
     }
 }
