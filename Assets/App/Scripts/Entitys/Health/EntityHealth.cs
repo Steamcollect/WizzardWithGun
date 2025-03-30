@@ -3,7 +3,7 @@ using UnityEngine;
 public class EntityHealth : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] int maxHealth;
+    int maxHealth;
     int currentHealth;
 
     //[Header("References")]
@@ -16,12 +16,9 @@ public class EntityHealth : MonoBehaviour
     //[Header("Input")]
     //[Header("Output")]
 
-    private void Start()
+    public void Setup(int maxHealth)
     {
-        Setup();
-    }
-    void Setup()
-    {
+        this.maxHealth = maxHealth;
         currentHealth = maxHealth;
     }
 

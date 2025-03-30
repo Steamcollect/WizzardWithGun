@@ -70,6 +70,7 @@ public class EntitySpawnerManager : MonoBehaviour
         yield return new WaitForSeconds(spawningCooldown);
 
         EntityMotor entity = GetEntity(_entity.entityName);
+        entity.Setup();
 
         Vector2 posOffset = Random.insideUnitCircle.normalized * spawningRadius;
         entity.transform.position = 

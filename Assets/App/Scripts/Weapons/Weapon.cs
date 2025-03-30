@@ -20,7 +20,7 @@ public abstract class Weapon : MonoBehaviour
     //[Header("Input")]
     //[Header("Output")]
 
-    public Action<EntityHealth> onEntityTouch;
+    public Action<EntityMotor> onEntityTouch;
 
     public bool CanAttack()
     {

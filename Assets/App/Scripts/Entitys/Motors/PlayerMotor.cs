@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class PlayerMotor : MonoBehaviour
+public class PlayerMotor : EntityMotor
 {
     //[Header("Settings")]
 
-    [Header("References")]
-    [SerializeField] PlayerMovement movement;
+    //Header("References")]
 
     [Space(10)]
     // RSO

@@ -1,18 +1,14 @@
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat : EntityCombat
 {
-    [Header("Settings")]
-    [SerializeField] int attackDamage;
-
+    //[Header("Settings")]
     Vector3 lookDir;
 
     [Header("References")]
     [SerializeField] Transform weaponContent;
 
     [SerializeField] Weapon currentWeapon;
-
-    Camera cam;
 
     [Space(10)]
     // RSO
@@ -25,8 +21,6 @@ public class PlayerCombat : MonoBehaviour
 
     private void Start()
     {
-        cam = Camera.main;
-
         SetWeapon(currentWeapon);
     }
 
@@ -34,9 +28,14 @@ public class PlayerCombat : MonoBehaviour
     {
         RotateWeapon();
 
+        Attack(lookDir);
+    }
+
+    public override void Attack(Vector3 _lookDir)
+    {
         if (Input.GetKey(KeyCode.Mouse0) && currentWeapon.CanAttack())
         {
-            currentWeapon.Attack(lookDir);
+            currentWeapon.Attack(_lookDir);
         }
     }
 
@@ -81,8 +80,8 @@ public class PlayerCombat : MonoBehaviour
         weapon.onEntityTouch += OnEntityTouch;
     }
 
-    void OnEntityTouch(EntityHealth entityHealth)
+    void OnEntityTouch(EntityMotor entity)
     {
-        entityHealth.TakeDamage(attackDamage + currentWeapon.GetAttackDamage());
+        entity.GetHealth().TakeDamage(attackDamage + currentWeapon.GetAttackDamage());
     }
 }

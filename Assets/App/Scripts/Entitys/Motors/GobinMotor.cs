@@ -5,8 +5,7 @@ public class GoblinMotor : EntityMotor
     [Header("Settings")]
     [SerializeField] float attackRange;
 
-    [Header("References")]
-    [SerializeField] GoblinMovement movement;
+    //[Header("References")]
 
     [Space(10)]
     // RSO
@@ -20,11 +19,17 @@ public class GoblinMotor : EntityMotor
     private void Update()
     {
         float distanceFromPlayer = Vector3.Distance(transform.position, rsoPlayerTransform.Value.position);
+        Vector3 lookDir = (rsoPlayerTransform.Value.position - transform.position).normalized;
 
         if (distanceFromPlayer > attackRange)
-            movement.SetInput((rsoPlayerTransform.Value.position - transform.position).ToVector2().normalized);
+        {
+            movement.SetInput(lookDir.ToVector2());
+        }
         else
+        {
             movement.SetInput(Vector2.zero);
+            combat.Attack(lookDir);
+        }
     }
 
     private void OnDrawGizmosSelected()

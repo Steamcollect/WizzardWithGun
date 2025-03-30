@@ -65,12 +65,11 @@ public class Weapon_Gun : Weapon
 
     void OnBulletTouchSomething(Bullet bullet, Collider touch)
     {
-        if(touch.TryGetComponent(out EntityHealth entityHealth))
+        if(touch.TryGetComponent(out EntityMotor entity))
         {
-            onEntityTouch?.Invoke(entityHealth);
+            onEntityTouch?.Invoke(entity);
         }
 
-        print("return to queue");
         bullet.ReturnToQueue();
     }
 }

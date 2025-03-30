@@ -6,9 +6,14 @@ public class EntityMotor : MonoBehaviour
 
     string entityName;
 
-    //[Header("References")]
+    [Header("References")]
+    [SerializeField] SSO_EntityData entityData;
 
-    //[Space(10)]
+    [Space(5)]
+    [SerializeField] protected EntityHealth health;
+    [SerializeField] protected EntityCombat combat;
+    [SerializeField] protected EntityMovement movement;
+
     // RSO
     // RSF
     // RSP
@@ -16,6 +21,12 @@ public class EntityMotor : MonoBehaviour
     //[Header("Input")]
     [Header("Output")]
     [SerializeField] RSE_ReturnEntity rseReturnEntity;
+
+    public void Setup()
+    {
+        combat.Setup(entityData.attackDamage);
+        health.Setup(entityData.health);
+    }
 
     public void SetName(string name)
     {
@@ -28,4 +39,8 @@ public class EntityMotor : MonoBehaviour
     }
 
     public float GetYSpawnOffset() { return ySpawnOffset; }
+
+    public EntityHealth GetHealth() { return health; }
+    public EntityCombat GetCombat() { return combat; }
+    public EntityMovement GetMovement() {  return movement; }
 }
