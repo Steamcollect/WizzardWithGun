@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5676316682142473583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6307924336825199160}
+  - component: {fileID: 766877308837922887}
+  m_Layer: 0
+  m_Name: EnemySpawnerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6307924336825199160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5676316682142473583}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &766877308837922887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5676316682142473583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48d0cb3aa7b8ed438dbe5a777f115be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entitys:
+  - entityName: Goblin
+    entityPrefab: {fileID: 8079486998383710244, guid: 4ef04d751f5c3e34d8d6a22a086aedc9,
+      type: 3}
+    instantiateAmount: 100
+    spawningCooldownPerTime:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1
+        value: 5
+        inSlope: -0.00312622
+        outSlope: -0.00312622
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.0862944
+      - serializedVersion: 3
+        time: 180
+        value: 0.5
+        inSlope: -0.049305182
+        outSlope: -0.049305182
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.03248724
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  ssoGameplayConfig: {fileID: 11400000, guid: e14667cab2b59954e86d7af5fb1f5ecf, type: 2}
+  rsoPlayerTransform: {fileID: 11400000, guid: 2bb91fd9d58091e4c96cf498c1a522bd, type: 2}
+  rseReturnEntity: {fileID: 11400000, guid: 84170329d6a0dd9478a2176c60f3e4fc, type: 2}

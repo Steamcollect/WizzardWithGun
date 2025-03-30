@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec422227b2d7a1428286242f0f0320b, type: 3}
-  m_Name: SSO_GameplayConfig
+  m_Script: {fileID: 11500000, guid: 47dcbf7747f153d4bb89778f66874284, type: 3}
+  m_Name: RSE_ReturnEntity
   m_EditorClassIdentifier: 
-  entitySpawningRange: 30
-  maxBulletDistanceFromPlayer: 30

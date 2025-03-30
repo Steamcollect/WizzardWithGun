@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
+using System;
 using IEnumerator = System.Collections.IEnumerator;
 
 public static class Utils
@@ -63,5 +62,11 @@ public static class Utils
     public static Vector2 ToVector2(this Vector3 vector3)
     {
         return new Vector2(vector3.x, vector3.z);
+    }
+
+    public static Vector3 RandomPointOnCircleEdge(this float radius)
+    {
+        var vector2 = UnityEngine.Random.insideUnitCircle.normalized * radius;
+        return new Vector3(vector2.x, 0, vector2.y);
     }
 }

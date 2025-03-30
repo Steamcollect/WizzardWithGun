@@ -70,6 +70,7 @@ public class Weapon_Gun : Weapon
             onEntityTouch?.Invoke(entityHealth);
         }
 
+        print("return to queue");
         bullet.ReturnToQueue();
     }
 }

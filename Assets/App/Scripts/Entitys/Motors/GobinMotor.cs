@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GoblinMotor : MonoBehaviour
+public class GoblinMotor : EntityMotor
 {
     [Header("Settings")]
     [SerializeField] float attackRange;
