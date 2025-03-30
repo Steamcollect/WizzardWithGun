@@ -23,12 +23,12 @@ public class EntitySpawnerManager : MonoBehaviour
         public Coroutine spawningCoroutine;
     }
 
+    [SerializeField] float spawningRadius;
+
     int entityCount;
 
     [Header("References")]
-    [SerializeField] SSO_GameplayConfig ssoGameplayConfig;
-
-    [Space(10)]
+    //[Space(10)]
     // RSO
     [SerializeField] RSO_PlayerTransform rsoPlayerTransform;
 
@@ -71,22 +71,17 @@ public class EntitySpawnerManager : MonoBehaviour
 
         EntityMotor entity = GetEntity(_entity.entityName);
 
-        Vector2 posOffset = Random.insideUnitCircle.normalized * ssoGameplayConfig.entitySpawningRange;
+        Vector2 posOffset = Random.insideUnitCircle.normalized * spawningRadius;
         entity.transform.position = 
             new Vector3(
                 rsoPlayerTransform.Value.position.x + posOffset.x, 
                 entity.GetYSpawnOffset(), 
                 rsoPlayerTransform.Value.position.z + posOffset.y);
 
-        Debug.DrawLine(rsoPlayerTransform.Value.position, rsoPlayerTransform.Value.position + new Vector3(
-                rsoPlayerTransform.Value.position.x + posOffset.x,
-                entity.GetYSpawnOffset(),
-                rsoPlayerTransform.Value.position.z + posOffset.y), Color.blue, 1);
-
-        print(posOffset);
-
         _entity.spawningCoroutine = StartCoroutine(EntitySpawningCooldown(_entity, _entity.spawningCooldownPerTime.Evaluate(Time.time)));
         
+        entity.gameObject.SetActive(true);
+
         entityCount++;
     }
 
@@ -96,7 +91,6 @@ public class EntitySpawnerManager : MonoBehaviour
             CreateEntity(entityName);
 
         EntityMotor entity = entitysDictionary[entityName].Dequeue();
-        entity.gameObject.SetActive(true);
         return entity;
     }
     void ReturnEntity(EntityMotor entity)
@@ -131,6 +125,6 @@ public class EntitySpawnerManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(rsoPlayerTransform.Value == null ? Vector3.zero : rsoPlayerTransform.Value.position, ssoGameplayConfig.entitySpawningRange);
+        Gizmos.DrawWireSphere(rsoPlayerTransform.Value == null ? Vector3.zero : rsoPlayerTransform.Value.position, spawningRadius);
     }
 }

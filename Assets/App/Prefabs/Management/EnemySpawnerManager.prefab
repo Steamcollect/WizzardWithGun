@@ -73,6 +73,6 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  ssoGameplayConfig: {fileID: 11400000, guid: e14667cab2b59954e86d7af5fb1f5ecf, type: 2}
+  spawningRadius: 30
   rsoPlayerTransform: {fileID: 11400000, guid: 2bb91fd9d58091e4c96cf498c1a522bd, type: 2}
   rseReturnEntity: {fileID: 11400000, guid: 84170329d6a0dd9478a2176c60f3e4fc, type: 2}
