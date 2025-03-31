@@ -17,7 +17,7 @@ public class GoblinCombat : EntityCombat
     //[Header("Input")]
     //[Header("Output")]
 
-    private void Start()
+    public override void OnSetup()
     {
         SetWeapon(weapon);
     }
@@ -32,7 +32,7 @@ public class GoblinCombat : EntityCombat
 
     public void SetWeapon(Weapon weapon)
     {
-        weaponContent.LookAt(-cam.transform.position);
+        weaponContent.forward = -rsoCameraDirection.Value;
         weapon.onEntityTouch += OnEntityTouch;
     }
 

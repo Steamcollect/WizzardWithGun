@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
         rseCameraShoke.RemoveListener(Shoke);
     }
 
-    private void Start()
+    private void Awake()
     {
         rsoCameraDirection.Value = transform.position.normalized;
     }

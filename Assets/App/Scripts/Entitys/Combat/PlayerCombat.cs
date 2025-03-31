@@ -19,16 +19,16 @@ public class PlayerCombat : EntityCombat
     //[Header("Input")]
     //[Header("Output")]
 
-    private void Start()
-    {
-        SetWeapon(currentWeapon);
-    }
-
     private void Update()
     {
         RotateWeapon();
 
         Attack(lookDir);
+    }
+
+    public override void OnSetup()
+    {
+        SetWeapon(currentWeapon);
     }
 
     public override void Attack(Vector3 _lookDir)
@@ -76,7 +76,7 @@ public class PlayerCombat : EntityCombat
 
     public void SetWeapon(Weapon weapon)
     {
-        weaponContent.LookAt(-cam.transform.position);
+        weaponContent.forward = -rsoCameraDirection.Value;
         weapon.onEntityTouch += OnEntityTouch;
     }
 

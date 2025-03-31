@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8110a78bbec564e4ca5f9fe817789b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rsoCameraDirection: {fileID: 11400000, guid: 0e1cf036c6757564d80aa120b1476353, type: 2}
   weaponContent: {fileID: 4446157013930867464}
   weapon: {fileID: 8520988162380156397}
 --- !u!1 &4819110984706619236
