@@ -22,6 +22,11 @@ public class EntityMotor : MonoBehaviour
     [Header("Output")]
     [SerializeField] RSE_ReturnEntity rseReturnEntity;
 
+    private void Awake()
+    {
+        health.onDeath += ReturnToQueue;
+    }
+
     public void Setup()
     {
         combat.Setup(entityData.attackDamage);

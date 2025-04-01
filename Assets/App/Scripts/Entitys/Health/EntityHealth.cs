@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EntityHealth : MonoBehaviour
@@ -15,6 +16,8 @@ public class EntityHealth : MonoBehaviour
 
     //[Header("Input")]
     //[Header("Output")]
+
+    public Action onDeath;
 
     public void Setup(int maxHealth)
     {
@@ -34,6 +37,6 @@ public class EntityHealth : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        onDeath?.Invoke();
     }
 }
