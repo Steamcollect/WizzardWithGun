@@ -33,13 +33,13 @@ public class BulletManager : MonoBehaviour
 
     private void OnEnable()
     {
-        rsfGetBullet.AddListener(GetBullet);
-        rseReturnBullet.AddListener(ReturnBullet);
+        rsfGetBullet.Add(GetBullet);
+        rseReturnBullet.Add(ReturnBullet);
     }
     private void OnDisable()
     {
-        rsfGetBullet.RemoveListener(GetBullet);
-        rseReturnBullet.RemoveListener(ReturnBullet);
+        rsfGetBullet.Remove(GetBullet);
+        rseReturnBullet.Remove(ReturnBullet);
     }
 
     private void Start()

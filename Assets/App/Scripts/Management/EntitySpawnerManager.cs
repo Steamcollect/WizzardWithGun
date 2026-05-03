@@ -42,11 +42,11 @@ public class EntitySpawnerManager : MonoBehaviour
 
     private void OnEnable()
     {
-        rseReturnEntity.AddListener(ReturnEntity);
+        rseReturnEntity.Add(ReturnEntity);
     }
     private void OnDisable()
     {
-        rseReturnEntity.RemoveListener(ReturnEntity);
+        rseReturnEntity.Remove(ReturnEntity);
     }
 
     private void Start()

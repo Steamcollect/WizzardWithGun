@@ -27,13 +27,13 @@ public class CameraController : MonoBehaviour
 
     private void OnEnable()
     {
-        rseSetCamTarget.AddListener(SetTarget);
-        rseCameraShoke.AddListener(Shoke);
+        rseSetCamTarget.Add(SetTarget);
+        rseCameraShoke.Add(Shoke);
     }
     private void OnDisable()
     {
-        rseSetCamTarget.RemoveListener(SetTarget);
-        rseCameraShoke.RemoveListener(Shoke);
+        rseSetCamTarget.Remove(SetTarget);
+        rseCameraShoke.Remove(Shoke);
     }
 
     private void Awake()
