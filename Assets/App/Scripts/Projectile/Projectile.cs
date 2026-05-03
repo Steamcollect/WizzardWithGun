@@ -1,13 +1,12 @@
+using MVsToolkit.Pool;
 using System;
 using UnityEngine;
 
-public abstract class Bullet : MonoBehaviour
+public abstract class Projectile : MonoBehaviour
 {
     //[Header("Settings")]
     float moveSpeed;
     Vector3 moveDir;
-
-    string bulletName;
 
     [Header("References")]
     [SerializeField] Rigidbody rb;
@@ -15,24 +14,25 @@ public abstract class Bullet : MonoBehaviour
     [Space(10)]
     [SerializeField] SSO_GameplayConfig ssoGameplayConfig;
 
-    // RSO
+    [Space(5)]
     [SerializeField] RSO_CameraDirection rsoCameraDirection;
     [SerializeField] RSO_PlayerTransform rsoPlayerTransform;
-    // RSF
-    // RSP
 
-    //[Header("Input")]
-    [Header("Output")]
-    [SerializeField] RSE_ReturnBullet rseReturnbullet;
-    
-    protected Action<Bullet, Collider> onTriggerEnter;
+    protected Action<Projectile, Collider> onTriggerEnter;
+
+    MVsPool<Projectile> poolConnected;
 
     private void Awake()
     {
         transform.forward = -rsoCameraDirection.Value;
     }
 
-    public void Setup(Vector3 moveDir, float moveSpeed, Action<Bullet, Collider> onTouchSomething)
+    public void Initialize(MVsPool<Projectile> pool)
+    {
+        poolConnected = pool;
+    }
+
+    public void ShootSetup(Vector3 moveDir, float moveSpeed, Action<Projectile, Collider> onTouchSomething)
     {
         this.moveDir = new Vector3(moveDir.x, 0, moveDir.z);
 
@@ -47,7 +47,13 @@ public abstract class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         rb.linearVelocity = moveDir * moveSpeed;
-        if (Vector3.Distance(transform.position, rsoPlayerTransform.Value.position) 
+
+        CheckPlayerDistance();
+    }
+
+    protected virtual void CheckPlayerDistance()
+    {
+        if (Vector3.Distance(transform.position, rsoPlayerTransform.Value.position)
             > ssoGameplayConfig.maxBulletDistanceFromPlayer)
         {
             ReturnToQueue();
@@ -59,12 +65,10 @@ public abstract class Bullet : MonoBehaviour
         onTriggerEnter?.Invoke(this, other);
         _OnTriggerEnter(other);
     }
-    protected abstract void _OnTriggerEnter(Collider other);
+    protected virtual void _OnTriggerEnter(Collider other) { }
 
-    public void SetName(string name) { bulletName = name; }
-    public string GetName() { return bulletName; }
     public void ReturnToQueue()
     {
-        rseReturnbullet.Call(this);
+        poolConnected.Release(this);
     }
 }

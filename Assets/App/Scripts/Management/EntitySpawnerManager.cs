@@ -1,3 +1,4 @@
+using MVsToolkit.Attributes;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ public class EntitySpawnerManager : MonoBehaviour
 
     [SerializeField] float spawningRadius;
 
-    int entityCount;
+    [SerializeField, ReadOnly] int entityCount;
 
     [Header("References")]
     //[Space(10)]

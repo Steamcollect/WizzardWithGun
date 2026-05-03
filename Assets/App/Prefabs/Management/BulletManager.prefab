@@ -44,10 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9ad86040d29644da2bbebb4ee30472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullets:
-  - bulletName: GunBullet
-    bulletPrefab: {fileID: 8637765793346690241, guid: ac50ad9c738aca3449069e45f987cf16,
+  projectiles:
+  - Prefab: {fileID: 8637765793346690241, guid: ac50ad9c738aca3449069e45f987cf16,
       type: 3}
-    instantiateAmount: 30
+    m_SetParent: 1
+    Parent: {fileID: 2763200747013957355}
+    m_LimitSize: 0
+    MaximumPoolSize: 0
+    m_Prewarm: 1
+    PrewarmCount: 50
   rsfGetBullet: {fileID: 11400000, guid: fc433a44ea4086442846378f0b9c94f7, type: 2}
-  rseReturnBullet: {fileID: 11400000, guid: 493ea0e57174e2641a02ea67a139c73d, type: 2}

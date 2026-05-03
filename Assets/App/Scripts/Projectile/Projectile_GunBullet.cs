@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bullet_Gun : Bullet
+public class Projectile_GunBullet : Projectile
 {
     [Header("Settings")]
     [SerializeField] float trailMoveSpeed;
@@ -26,10 +26,5 @@ public class Bullet_Gun : Bullet
     {
         float posX = Mathf.Cos(Time.time * trailMoveSpeed) * trailMoveRange;
         trail.transform.localPosition = new Vector3(posX, trail.transform.localPosition.y, trail.transform.localPosition.z);
-    }
-
-    protected override void _OnTriggerEnter(Collider other)
-    {
-        //Destroy(gameObject);
     }
 }

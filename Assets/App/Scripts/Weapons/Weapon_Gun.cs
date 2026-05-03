@@ -12,19 +12,13 @@ public class Weapon_Gun : Weapon
     [SerializeField] float camShokeRange;
 
     [Header("References")]
-    [SerializeField] string bulletName;
+    [SerializeField] ProjectileType projectileType;
     [SerializeField] Transform bulletSpawnPoint;
 
     [Space(10)]
     [SerializeField] GameObject musleFlashGO;
     [SerializeField] Animator anim;
 
-    //[Space(10)]
-    // RSO
-    // RSF
-    // RSP
-
-    //[Header("Input")]
     [Header("Output")]
     [SerializeField] RSE_CameraShoke rseCamShoke;
     [SerializeField] RSF_GetBullet rsfGetBullet;
@@ -35,10 +29,10 @@ public class Weapon_Gun : Weapon
         if(posY < .3f) posY = .3f;
         else if(posY > 1.3f) posY = 1.3f;
 
-        Bullet bullet = rsfGetBullet.Call(bulletName);
+        Projectile bullet = rsfGetBullet.Call(projectileType);
         bullet.transform.position = new Vector3(bulletSpawnPoint.position.x, posY, bulletSpawnPoint.position.z);
 
-        bullet.Setup(lookDir, bulletSpeed, OnBulletTouchSomething);
+        bullet.ShootSetup(lookDir, bulletSpeed, OnBulletTouchSomething);
 
         StartCoroutine(AttackCooldown());
 
@@ -63,7 +57,7 @@ public class Weapon_Gun : Weapon
         return true;
     }
 
-    void OnBulletTouchSomething(Bullet bullet, Collider touch)
+    void OnBulletTouchSomething(Projectile bullet, Collider touch)
     {
         if(touch.TryGetComponent(out EntityMotor entity))
         {
