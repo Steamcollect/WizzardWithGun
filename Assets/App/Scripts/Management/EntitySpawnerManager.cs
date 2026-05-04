@@ -1,4 +1,5 @@
 using MVsToolkit.Attributes;
+using MVsToolkit.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,6 +128,6 @@ public class EntitySpawnerManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(rsoPlayerTransform.Value == null ? Vector3.zero : rsoPlayerTransform.Value.position, spawningRadius);
+        MVsGizmos.DrawCircle(rsoPlayerTransform.Value == null ? Vector3.zero : rsoPlayerTransform.Value.position, spawningRadius, Vector3.up, Color.white);
     }
 }

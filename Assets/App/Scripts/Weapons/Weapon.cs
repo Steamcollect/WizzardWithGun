@@ -10,8 +10,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] int attackDamage;
 
     [SerializeField, ReadOnly] protected bool isAttacking = false;
-
-    bool isOnAttackCooldown = false;
+    [SerializeField, ReadOnly] protected bool isOnAttackCooldown = false;
 
     /// <summary>
     /// On weapon apply damage to something
