@@ -18,13 +18,18 @@ public class Weapon_Gun : Weapon
     [Space(10)]
     [SerializeField] GameObject musleFlashGO;
     [SerializeField] Animator anim;
+    
+    Coroutine musleFlashCoroutine;
 
     [Header("Output")]
     [SerializeField] RSE_CameraShoke rseCamShoke;
     [SerializeField] RSF_GetBullet rsfGetBullet;
 
-    public override void Attack(Vector3 lookDir)
+    public override void StartAttack(Vector3 lookDir)
     {
+        if (!CanAttack()) return;
+        base.StartAttack(lookDir);
+
         float posY = bulletSpawnPoint.position.y;
         if(posY < .3f) posY = .3f;
         else if(posY > 1.3f) posY = 1.3f;
@@ -39,22 +44,9 @@ public class Weapon_Gun : Weapon
         anim.SetTrigger("Shoot");
 
         if (musleFlashCoroutine != null) StopCoroutine(musleFlashCoroutine);
-        StartCoroutine(MusleFlashDelay());
+        StartCoroutine(MusleFlashAnimation());
 
         rseCamShoke.Call(camShokeRange);
-    }
-
-    Coroutine musleFlashCoroutine;
-    IEnumerator MusleFlashDelay()
-    {
-        musleFlashGO.SetActive(true);
-        yield return new WaitForSeconds(musleFlashDelay);
-        musleFlashGO.SetActive(false);
-    }
-
-    protected override bool _CanAttack()
-    {
-        return true;
     }
 
     void OnBulletTouchSomething(Projectile bullet, Collider touch)
@@ -65,5 +57,12 @@ public class Weapon_Gun : Weapon
         }
 
         bullet.ReturnToQueue();
+    }
+
+    IEnumerator MusleFlashAnimation()
+    {
+        musleFlashGO.SetActive(true);
+        yield return new WaitForSeconds(musleFlashDelay);
+        musleFlashGO.SetActive(false);
     }
 }

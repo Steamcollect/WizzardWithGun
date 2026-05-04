@@ -17,17 +17,9 @@ public class GoblinCombat : EntityCombat
     //[Header("Input")]
     //[Header("Output")]
 
-    public override void OnSetup()
+    public override void Setup(SSO_EntityData data)
     {
         SetWeapon(weapon);
-    }
-
-    public override void Attack(Vector3 lookDir)
-    {
-        if (weapon.CanAttack())
-        {
-            weapon.Attack(lookDir);
-        }
     }
 
     public void SetWeapon(Weapon weapon)

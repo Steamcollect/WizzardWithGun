@@ -1,3 +1,4 @@
+using MVsToolkit.Attributes;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -8,33 +9,39 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] float attackCooldown;
     [SerializeField] int attackDamage;
 
+    [SerializeField, ReadOnly] protected bool isAttacking = false;
+
     bool isOnAttackCooldown = false;
 
-    //[Header("References")]
-
-    //[Space(10)]
-    // RSO
-    // RSF
-    // RSP
-
-    //[Header("Input")]
-    //[Header("Output")]
-
+    /// <summary>
+    /// On weapon apply damage to something
+    /// </summary>
     public Action<EntityMotor> onEntityTouch;
-
-    public bool CanAttack()
+    
+    public virtual void StartAttack(Vector3 lookDir)
     {
-        return !isOnAttackCooldown && _CanAttack();
+        isAttacking = true;
     }
-    protected abstract bool _CanAttack();
 
-    public abstract void Attack(Vector3 lookDir);
+    public virtual void ReleaseAttack(Vector3 lookDir) 
+    {
+        isAttacking = false;
+    }
 
     protected IEnumerator AttackCooldown()
     {
         isOnAttackCooldown = true;
         yield return new WaitForSeconds(attackCooldown);
         isOnAttackCooldown = false;
+    }
+
+    /// <summary>
+    /// Can the weapon currently attack, can be override if the current weapon require
+    /// </summary>
+    /// <returns></returns>
+    public virtual bool CanAttack()
+    {
+        return !isOnAttackCooldown && !isAttacking;
     }
 
     public int GetAttackDamage() { return attackDamage; }

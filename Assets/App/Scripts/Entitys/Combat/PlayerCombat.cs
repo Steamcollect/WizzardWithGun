@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCombat : EntityCombat
 {
@@ -11,32 +12,44 @@ public class PlayerCombat : EntityCombat
     [SerializeField] Weapon currentWeapon;
 
     [Space(10)]
-    // RSO
-    [SerializeField] RSO_PlayerCombatLookDir rsoPlayerCombatLookDir;
-    // RSF
-    // RSP
+    [SerializeField] InputActionReference mousePositionIA;
+    [SerializeField] InputActionReference attackIA;
 
-    //[Header("Input")]
-    //[Header("Output")]
+    [Space(5)]
+    [SerializeField] RSO_PlayerCombatLookDir rsoPlayerCombatLookDir;
+
+    private void OnEnable()
+    {
+        mousePositionIA.action.Enable();
+        attackIA.action.Enable();
+
+        attackIA.action.started += AttackInputStart;
+        attackIA.action.canceled += AttackInputRelease;
+    }
+    private void OnDisable()
+    {
+        attackIA.action.started -= AttackInputStart;
+        attackIA.action.canceled -= AttackInputRelease;
+    }
 
     private void Update()
     {
         RotateWeapon();
-
-        Attack(lookDir);
     }
 
-    public override void OnSetup()
+    public override void Setup(SSO_EntityData data)
     {
         SetWeapon(currentWeapon);
     }
 
-    public override void Attack(Vector3 _lookDir)
+    void AttackInputStart(InputAction.CallbackContext ctx)
     {
-        if (Input.GetKey(KeyCode.Mouse0) && currentWeapon.CanAttack())
-        {
-            currentWeapon.Attack(_lookDir);
-        }
+        currentWeapon.StartAttack(lookDir);
+    }
+    
+    void AttackInputRelease(InputAction.CallbackContext ctx)
+    {
+        currentWeapon.ReleaseAttack(lookDir);
     }
 
     void RotateWeapon()
@@ -58,22 +71,6 @@ public class PlayerCombat : EntityCombat
         }
     }
 
-    public static bool GetMousePositionOnGround(out Vector3 hitPosition)
-    {
-        hitPosition = Vector3.zero;
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-
-        if (groundPlane.Raycast(ray, out float distance))
-        {
-            hitPosition = ray.GetPoint(distance);
-            return true;
-        }
-
-        return false;
-    }
-
     public void SetWeapon(Weapon weapon)
     {
         weaponContent.forward = -rsoCameraDirection.Value;
@@ -83,5 +80,21 @@ public class PlayerCombat : EntityCombat
     void OnEntityTouch(EntityMotor entity)
     {
         entity.GetHealth().TakeDamage(attackDamage + currentWeapon.GetAttackDamage());
+    }
+
+    bool GetMousePositionOnGround(out Vector3 hitPosition)
+    {
+        hitPosition = Vector3.zero;
+
+        Ray ray = Camera.main.ScreenPointToRay(mousePositionIA.action.ReadValue<Vector2>());
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+
+        if (groundPlane.Raycast(ray, out float distance))
+        {
+            hitPosition = ray.GetPoint(distance);
+            return true;
+        }
+
+        return false;
     }
 }

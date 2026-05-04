@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMotor : EntityMotor
 {
     //[Header("Settings")]
+    Vector2 movementInput;
 
-    //Header("References")]
+    [Header("References")]
+    [SerializeField] InputActionReference movementIA;
 
     [Space(10)]
     // RSO
@@ -21,13 +24,22 @@ public class PlayerMotor : EntityMotor
     {
         rsoPlayerTransform.Value = transform;
     }
-    private void Start()
+
+    private void OnEnable()
     {
+        movementIA.action.Enable();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
         rseSetCamTarget.Call(transform);
     }
 
     private void Update()
     {
-        movement.SetInput(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized);
+        movementInput = movementIA.action.ReadValue<Vector2>().normalized;
+
+        movement.SetInput(movementInput);
     }
 }

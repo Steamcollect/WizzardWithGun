@@ -28,7 +28,7 @@ public class GoblinMotor : EntityMotor
         else
         {
             movement.SetInput(Vector2.zero);
-            combat.Attack(lookDir);
+            //combat.Attack(lookDir);
         }
     }
 
