@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class EntityMovement : MonoBehaviour
@@ -9,7 +10,6 @@ public abstract class EntityMovement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] protected Rigidbody rb;
-    [SerializeField] Animator anim;
 
     //[Space(10)]
     // RSO
@@ -18,6 +18,11 @@ public abstract class EntityMovement : MonoBehaviour
 
     //[Header("Input")]
     //[Header("Output")]
+    
+    /// <summary>
+    /// Call on FixedUpdate, return clamp01 float base on speed on maxSpeed
+    /// </summary>
+    public Action<float> OnSpeedChange;
 
     private void FixedUpdate()
     {
@@ -28,7 +33,9 @@ public abstract class EntityMovement : MonoBehaviour
     void Move()
     {
         rb.AddForce(input.ToVector3() * moveSpeed);
-        anim.speed = Mathf.Clamp01(rb.linearVelocity.sqrMagnitude / maxSpeed);
+
+        float speedOnOne = rb.linearVelocity.sqrMagnitude;
+        OnSpeedChange?.Invoke(Mathf.Clamp01(rb.linearVelocity.sqrMagnitude / maxSpeed));
     }
 
     public void SetInput(Vector2 input)
