@@ -925,7 +925,7 @@ PrefabInstance:
     - target: {fileID: 2338628125379400874, guid: 4ef04d751f5c3e34d8d6a22a086aedc9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2338628125379400874, guid: 4ef04d751f5c3e34d8d6a22a086aedc9,
         type: 3}
@@ -966,6 +966,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3721600498022055134, guid: 4ef04d751f5c3e34d8d6a22a086aedc9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1431,6 +1436,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawnerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676316682142473583, guid: 9b714796e0086f24fbfff90016c1285c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6307924336825199160, guid: 9b714796e0086f24fbfff90016c1285c,
         type: 3}

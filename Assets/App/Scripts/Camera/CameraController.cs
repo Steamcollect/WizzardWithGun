@@ -25,6 +25,11 @@ public class CameraController : MonoBehaviour
 
     //[Header("Output")]
 
+    private void Awake()
+    {
+        rsoCameraDirection.Value = transform.position.normalized;
+    }
+
     private void OnEnable()
     {
         rseSetCamTarget.Add(SetTarget);
@@ -34,11 +39,6 @@ public class CameraController : MonoBehaviour
     {
         rseSetCamTarget.Remove(SetTarget);
         rseCameraShoke.Remove(Shoke);
-    }
-
-    private void Awake()
-    {
-        rsoCameraDirection.Value = transform.position.normalized;
     }
 
     private void Update()

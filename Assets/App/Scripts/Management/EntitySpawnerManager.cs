@@ -78,7 +78,7 @@ public class EntitySpawnerManager : MonoBehaviour
         entity.transform.position = 
             new Vector3(
                 rsoPlayerTransform.Value.position.x + posOffset.x, 
-                entity.GetYSpawnOffset(), 
+                0,
                 rsoPlayerTransform.Value.position.z + posOffset.y);
 
         _entity.spawningCoroutine = StartCoroutine(EntitySpawningCooldown(_entity, _entity.spawningCooldownPerTime.Evaluate(Time.time)));

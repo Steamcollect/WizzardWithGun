@@ -1,9 +1,7 @@
 using UnityEngine;
 public class EntityMotor : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] float ySpawnOffset;
-
+    //[Header("Settings")]
     string entityName;
 
     [Header("References")]
@@ -47,8 +45,6 @@ public class EntityMotor : MonoBehaviour
     {
         rseReturnEntity.Call(this);
     }
-
-    public float GetYSpawnOffset() { return ySpawnOffset; }
 
     public EntityHealth GetHealth() { return health; }
     public EntityCombat GetCombat() { return combat; }
