@@ -288,11 +288,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityVisual
   verticalRange: 0.3
-  verticalSpeed: 22
-  horizontalRange: 0.5
-  horizontalSpeed: 0
+  horizontalRange: 0.42
   rotationRange: -3
-  rotationSpeed: 22
+  animationSpeed: 20
   animatedObject: {fileID: 2893253615419513860}
   movement: {fileID: 6372370025316241935}
 --- !u!212 &8587185115095750163

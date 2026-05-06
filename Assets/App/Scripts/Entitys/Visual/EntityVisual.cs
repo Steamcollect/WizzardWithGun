@@ -1,24 +1,18 @@
-using MVsToolkit.Utilities;
-using System;
 using UnityEngine;
 
 public class EntityVisual : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float verticalRange;
-    [SerializeField] float verticalSpeed;
-
-    [Space(5)]
     [SerializeField] float horizontalRange;
-    [SerializeField] float horizontalSpeed;
-
-    [Space(5)]
     [SerializeField] float rotationRange;
-    [SerializeField] float rotationSpeed;
+
+    [Space]
+    [SerializeField] float animationSpeed;
 
     Vector3 defaultPos, defaultRot;
 
-    float animationSpeed;
+    float animationSpeedMult;
     float time;
 
     [Header("References")]
@@ -31,26 +25,25 @@ public class EntityVisual : MonoBehaviour
         defaultPos = animatedObject.localPosition;
         defaultRot = animatedObject.localEulerAngles;
 
-        time = UnityEngine.Random.value;
+        time = Random.value;
 
         movement.OnSpeedChange += SetAnimationSpeed;
     }
 
     private void Update()
     {
-        time += Time.deltaTime;
-
+        time += Time.deltaTime * animationSpeedMult;
         Animate();
     }
 
     public virtual void Animate()
     {
-        if (animationSpeed <= .05f) return;
+        if (animationSpeedMult <= .05f) return;
 
         animatedObject.localPosition = new Vector3
             (
-                Mathf.Sin(time * verticalSpeed * animationSpeed) * verticalRange,
-                Mathf.Sin(time * horizontalSpeed * animationSpeed) * horizontalRange,
+                Mathf.Sin(time * animationSpeed) * verticalRange,
+                horizontalRange + Mathf.Sin((time +.5f) * animationSpeed * 2) * horizontalRange,
                 defaultPos.z
             );
 
@@ -58,13 +51,12 @@ public class EntityVisual : MonoBehaviour
             (
                 defaultRot.x,
                 defaultRot.y,
-                Mathf.Sin(time * rotationSpeed * animationSpeed) * rotationRange
+                Mathf.Sin(time * animationSpeed) * rotationRange
             );
     }
 
     void SetAnimationSpeed(float speed)
     {
-        print(speed);
-        animationSpeed = speed;
+        animationSpeedMult = speed;
     }
 }

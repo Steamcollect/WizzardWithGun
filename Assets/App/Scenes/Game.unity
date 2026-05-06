@@ -1574,6 +1574,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizzard
       objectReference: {fileID: 0}
+    - target: {fileID: 4208185501839893304, guid: 83734acaebd248a439553d71024bbbe4,
+        type: 3}
+      propertyPath: horizontalSpeed
+      value: 44
+      objectReference: {fileID: 0}
     - target: {fileID: 6372370025316241935, guid: 83734acaebd248a439553d71024bbbe4,
         type: 3}
       propertyPath: anim
