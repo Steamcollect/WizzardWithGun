@@ -43,7 +43,7 @@ public class EntityMotor : MonoBehaviour
     public string GetName() { return entityName; }
     public void ReturnToQueue()
     {
-        rseReturnEntity.Call(this);
+        rseReturnEntity.Invoke(this);
     }
 
     public EntityHealth GetHealth() { return health; }

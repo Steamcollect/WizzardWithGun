@@ -128,6 +128,6 @@ public class EntitySpawnerManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        MVsGizmos.DrawCircle(rsoPlayerTransform.Value == null ? Vector3.zero : rsoPlayerTransform.Value.position, spawningRadius, Vector3.up, Color.white);
+        MVsGizmos.DrawCircle(rsoPlayerTransform.Value == null ? Vector3.zero : rsoPlayerTransform.Value.position, spawningRadius, Vector3.up);
     }
 }

@@ -34,7 +34,7 @@ public class Weapon_Gun : Weapon
         if(posY < .3f) posY = .3f;
         else if(posY > 1.3f) posY = 1.3f;
 
-        Projectile bullet = rsfGetBullet.Call(projectileType);
+        Projectile bullet = rsfGetBullet.Invoke(projectileType);
         bullet.transform.position = new Vector3(bulletSpawnPoint.position.x, posY, bulletSpawnPoint.position.z);
 
         bullet.ShootSetup(lookDir, bulletSpeed, OnBulletTouchSomething);
@@ -46,7 +46,7 @@ public class Weapon_Gun : Weapon
         if (musleFlashCoroutine != null) StopCoroutine(musleFlashCoroutine);
         StartCoroutine(MusleFlashAnimation());
 
-        rseCamShoke.Call(camShokeRange);
+        rseCamShoke.Invoke(camShokeRange);
     }
 
     void OnBulletTouchSomething(Projectile bullet, Collider touch)

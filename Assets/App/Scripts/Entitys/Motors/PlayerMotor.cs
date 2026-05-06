@@ -33,7 +33,7 @@ public class PlayerMotor : EntityMotor
     protected override void Start()
     {
         base.Start();
-        rseSetCamTarget.Call(transform);
+        rseSetCamTarget.Invoke(transform);
     }
 
     private void Update()
