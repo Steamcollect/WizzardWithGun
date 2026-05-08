@@ -19,9 +19,9 @@ public class EntityHealth : MonoBehaviour
 
     public Action onDeath;
 
-    public void Setup(SSO_EntityData data)
+    public void Setup(EntityStatistics statistics)
     {
-        maxHealth = data.health;
+        maxHealth = statistics.Health;
         currentHealth = maxHealth;
     }
 

@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class PlayerMovement : EntityMovement
+public class GoblinCombat : EntityCombat
 {
     //[Header("Settings")]
+
     //[Header("References")]
 
     //[Space(10)]
@@ -12,4 +13,9 @@ public class PlayerMovement : EntityMovement
 
     //[Header("Input")]
     //[Header("Output")]
+
+    public override void SetWeapon(Weapon weapon)
+    {
+        weaponContent.forward = -rsoCameraDirection.Value;
+    }
 }

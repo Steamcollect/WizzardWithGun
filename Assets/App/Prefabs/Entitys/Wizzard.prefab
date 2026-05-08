@@ -45,15 +45,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93346e513fba054fb6f3fa85f57bca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rsoCameraDirection: {fileID: 11400000, guid: 0e1cf036c6757564d80aa120b1476353, type: 2}
   weaponContent: {fileID: 6658493051910602790}
   currentWeapon: {fileID: 5368541132452427705}
+  rsoCameraDirection: {fileID: 11400000, guid: 0e1cf036c6757564d80aa120b1476353, type: 2}
   mousePositionIA: {fileID: -687391440711254336, guid: 7dbbb6b96c3aeac46907f95ffd2da4fc,
     type: 3}
   attackIA: {fileID: 2038148157468135636, guid: 7dbbb6b96c3aeac46907f95ffd2da4fc,
     type: 3}
-  rsoPlayerCombatLookDir: {fileID: 11400000, guid: 538744ce51ad19d41abdc8f5cfb61dcf,
-    type: 2}
+--- !u!1 &1989642664307913502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2251778303996695414}
+  - component: {fileID: 2523704813542775431}
+  m_Layer: 0
+  m_Name: Statistics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2251778303996695414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989642664307913502}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 896870736580445427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2523704813542775431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989642664307913502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a37e15e54140c94685dfa563e4671e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityStatistics
+  data: {fileID: 11400000, guid: e8f4833554626b6458617bd49785b19d, type: 2}
+  Health: 0
+  MoveSpeed: 0
+  Damage: 0
 --- !u!1 &2899889285326213455
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,13 +129,14 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 2893253615419513860}
-  - {fileID: 3849948113804191385}
+  - {fileID: 2251778303996695414}
   - {fileID: 2300467754340664606}
   - {fileID: 1200518149441045491}
+  - {fileID: 3849948113804191385}
+  - {fileID: 2893253615419513860}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &358061531953475625
@@ -138,10 +185,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.4960724
-  m_Height: 5.960806
+  m_Radius: 0.52847075
+  m_Height: 1.5519984
   m_Direction: 1
-  m_Center: {x: 0, y: -0.34084418, z: 0}
+  m_Center: {x: 0, y: -0.06404948, z: 0}
 --- !u!114 &7357282352150930755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,10 +201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcd91a76fd25e44eba1facf9b064ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: e8f4833554626b6458617bd49785b19d, type: 2}
+  statistics: {fileID: 2523704813542775431}
   health: {fileID: 5714076786427169941}
   combat: {fileID: 5798101292402797526}
-  movement: {fileID: 6372370025316241935}
+  movement: {fileID: 2802329163824737227}
   rseReturnEntity: {fileID: 11400000, guid: 84170329d6a0dd9478a2176c60f3e4fc, type: 2}
   movementIA: {fileID: -8448466628815529265, guid: 7dbbb6b96c3aeac46907f95ffd2da4fc,
     type: 3}
@@ -172,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1200518149441045491}
-  - component: {fileID: 6372370025316241935}
+  - component: {fileID: 2802329163824737227}
   m_Layer: 0
   m_Name: Movement
   m_TagString: Untagged
@@ -188,14 +235,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4143947334780137556}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 896870736580445427}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6372370025316241935
+--- !u!114 &2802329163824737227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,10 +251,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4143947334780137556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703716b86e84d74468e55af4756ef97e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9473a2c7423259b48b0b4891881d8af5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 40
+  m_EditorClassIdentifier: Assembly-CSharp::EntityMovement
+  moveSpeed: 15
   maxSpeed: 15
   rb: {fileID: 358061531953475625}
 --- !u!1 &4236490975813692662
@@ -235,7 +282,7 @@ Transform:
   m_GameObject: {fileID: 4236490975813692662}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -292,7 +339,7 @@ MonoBehaviour:
   rotationRange: -3
   animationSpeed: 20
   animatedObject: {fileID: 2893253615419513860}
-  movement: {fileID: 6372370025316241935}
+  movement: {fileID: 0}
 --- !u!212 &8587185115095750163
 SpriteRenderer:
   serializedVersion: 2
@@ -412,7 +459,7 @@ PrefabInstance:
     - target: {fileID: 7258700120060555758, guid: cfa0cff7c4643354983a9ddcbc41df65,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.61
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7258700120060555758, guid: cfa0cff7c4643354983a9ddcbc41df65,
         type: 3}

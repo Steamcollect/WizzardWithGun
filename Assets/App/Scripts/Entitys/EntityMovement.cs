@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class EntityMovement : MonoBehaviour
+public class EntityMovement : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float moveSpeed;

@@ -9,7 +9,7 @@ public class ProjectileManager : MonoBehaviour
     [SerializeField] MVsPool<Projectile>[] projectiles;
 
     [Header("References")]
-    [SerializeField] RSF_GetBullet rsfGetBullet;
+    [SerializeField] RSF_GetProjectile rsfGetBullet;
 
     private void OnEnable()
     {

@@ -7,22 +7,18 @@ public abstract class Weapon : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float attackCooldown;
-    [SerializeField] int attackDamage;
 
     [SerializeField, ReadOnly] protected bool isAttacking = false;
     [SerializeField, ReadOnly] protected bool isOnAttackCooldown = false;
 
-    /// <summary>
-    /// On weapon apply damage to something
-    /// </summary>
-    public Action<EntityMotor> onEntityTouch;
+    public Action<EntityMotor> onDamageApplyToEntity;
     
     public virtual void StartAttack(Vector3 lookDir)
     {
         isAttacking = true;
     }
 
-    public virtual void ReleaseAttack(Vector3 lookDir) 
+    public virtual void CancelAttack(Vector3 lookDir) 
     {
         isAttacking = false;
     }
@@ -42,6 +38,4 @@ public abstract class Weapon : MonoBehaviour
     {
         return !isOnAttackCooldown && !isAttacking;
     }
-
-    public int GetAttackDamage() { return attackDamage; }
 }

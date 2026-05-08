@@ -5,7 +5,7 @@ public class EntityMotor : MonoBehaviour
     string entityName;
 
     [Header("References")]
-    [SerializeField] SSO_EntityData data;
+    [SerializeField] EntityStatistics statistics;
 
     [Space(5)]
     [SerializeField] protected EntityHealth health;
@@ -32,8 +32,7 @@ public class EntityMotor : MonoBehaviour
 
     public void Setup()
     {
-        combat.Setup(data);
-        health.Setup(data);
+        health.Setup(statistics);
     }
 
     public void SetName(string name)

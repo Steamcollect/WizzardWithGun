@@ -23,7 +23,7 @@ public class Weapon_Gun : Weapon
 
     [Header("Output")]
     [SerializeField] RSE_CameraShoke rseCamShoke;
-    [SerializeField] RSF_GetBullet rsfGetBullet;
+    [SerializeField] RSF_GetProjectile rsfGetBullet;
 
     public override void StartAttack(Vector3 lookDir)
     {
@@ -53,7 +53,7 @@ public class Weapon_Gun : Weapon
     {
         if(touch.TryGetComponent(out EntityMotor entity))
         {
-            onEntityTouch?.Invoke(entity);
+            onDamageApplyToEntity?.Invoke(entity);
         }
 
         bullet.ReturnToQueue();

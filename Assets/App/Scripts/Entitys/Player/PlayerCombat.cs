@@ -7,16 +7,10 @@ public class PlayerCombat : EntityCombat
     Vector3 lookDir;
 
     [Header("References")]
-    [SerializeField] Transform weaponContent;
-
-    [SerializeField] Weapon currentWeapon;
 
     [Space(10)]
     [SerializeField] InputActionReference mousePositionIA;
     [SerializeField] InputActionReference attackIA;
-
-    [Space(5)]
-    [SerializeField] RSO_PlayerCombatLookDir rsoPlayerCombatLookDir;
 
     private void OnEnable()
     {
@@ -37,11 +31,6 @@ public class PlayerCombat : EntityCombat
         RotateWeapon();
     }
 
-    public override void Setup(SSO_EntityData data)
-    {
-        SetWeapon(currentWeapon);
-    }
-
     void AttackInputStart(InputAction.CallbackContext ctx)
     {
         currentWeapon.StartAttack(lookDir);
@@ -49,7 +38,7 @@ public class PlayerCombat : EntityCombat
     
     void AttackInputRelease(InputAction.CallbackContext ctx)
     {
-        currentWeapon.ReleaseAttack(lookDir);
+        currentWeapon.CancelAttack(lookDir);
     }
 
     void RotateWeapon()
@@ -57,7 +46,6 @@ public class PlayerCombat : EntityCombat
         if (GetMousePositionOnGround(out Vector3 pos))
         {
             lookDir = (pos - transform.position).normalized;
-            rsoPlayerCombatLookDir.Value = lookDir;
 
             float angle = Mathf.Atan2(lookDir.z, lookDir.x) * Mathf.Rad2Deg;
 
@@ -74,12 +62,6 @@ public class PlayerCombat : EntityCombat
     public void SetWeapon(Weapon weapon)
     {
         weaponContent.forward = -rsoCameraDirection.Value;
-        weapon.onEntityTouch += OnEntityTouch;
-    }
-
-    void OnEntityTouch(EntityMotor entity)
-    {
-        entity.GetHealth().TakeDamage(attackDamage + currentWeapon.GetAttackDamage());
     }
 
     bool GetMousePositionOnGround(out Vector3 hitPosition)

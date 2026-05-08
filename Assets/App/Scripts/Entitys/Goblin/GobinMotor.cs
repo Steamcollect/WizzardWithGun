@@ -8,22 +8,22 @@ public class GoblinMotor : EntityMotor
     //[Header("References")]
 
     [Space(10)]
-    // RSO
     [SerializeField] RSO_PlayerTransform rsoPlayerTransform;
-
-    // RSF
-    // RSP
 
     //[Header("Input")]
     //[Header("Output")]
+
     private void Update()
     {
-        float distanceFromPlayer = Vector3.Distance(transform.position, rsoPlayerTransform.Value.position);
-        Vector3 lookDir = (rsoPlayerTransform.Value.position - transform.position).normalized;
+        Vector2 current = transform.position.ToVector2();
+        Vector2 target = rsoPlayerTransform.Get().position.ToVector2();
+
+        float distanceFromPlayer = Vector2.Distance(current, target);
+        Vector2 lookDir = (target - current).normalized;
 
         if (distanceFromPlayer > attackRange)
         {
-            movement.SetInput(lookDir.ToVector2());
+            movement.SetInput(lookDir);
         }
         else
         {
