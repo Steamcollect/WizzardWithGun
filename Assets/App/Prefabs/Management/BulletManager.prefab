@@ -53,4 +53,4 @@ MonoBehaviour:
     MaximumPoolSize: 0
     m_Prewarm: 1
     PrewarmCount: 50
-  rsfGetBullet: {fileID: 11400000, guid: fc433a44ea4086442846378f0b9c94f7, type: 2}
+  rsfGetProjetctile: {fileID: 11400000, guid: fc433a44ea4086442846378f0b9c94f7, type: 2}
