@@ -11,8 +11,30 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField, ReadOnly] protected bool isAttacking = false;
     [SerializeField, ReadOnly] protected bool isOnAttackCooldown = false;
 
+    [Header("Settings")]
+    [SerializeField] Transform content;
+
+    protected EntityStatistics statistics;
+
     public Action<EntityMotor> onDamageApplyToEntity;
-    
+
+    public virtual Weapon Initialize(EntityStatistics statistics)
+    {
+        this.statistics = statistics;
+        return this;
+    }
+
+    public virtual void Rotate(float angle)
+    {
+        if (angle < -90 || angle > 90) content.localScale = new Vector3(1, -1, 1);
+        else content.localScale = Vector3.one;
+
+        //content.eulerAngles = new Vector3(
+        //                        content.eulerAngles.x,
+        //                       content.eulerAngles.y,
+        //                        transform.parent.localEulerAngles.y);
+    }
+
     public virtual void StartAttack(Vector3 lookDir)
     {
         isAttacking = true;

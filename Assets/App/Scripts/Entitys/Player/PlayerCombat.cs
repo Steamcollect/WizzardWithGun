@@ -46,21 +46,17 @@ public class PlayerCombat : EntityCombat
         if (GetMousePositionOnGround(out Vector3 pos))
         {
             lookDir = (pos - transform.position).normalized;
+            float angle = Mathf.Atan2(lookDir.z, lookDir.x) * Mathf.Rad2Deg;            
 
-            float angle = Mathf.Atan2(lookDir.z, lookDir.x) * Mathf.Rad2Deg;
+            weaponContent.localRotation = Quaternion.Euler(0, -angle, 0);
 
-            if (angle < -90 || angle > 90) weaponContent.localScale = new Vector3(1, -1, 1);
-            else weaponContent.localScale = Vector3.one;
-
-            if (angle > 0) weaponContent.localPosition = new Vector3(0, 0, .1f);
-            else weaponContent.localPosition = new Vector3(0, 0, -.1f);
-
-            weaponContent.localRotation = Quaternion.Euler(weaponContent.localRotation.eulerAngles.x, weaponContent.localRotation.eulerAngles.y, angle);
+            currentWeapon.Rotate(angle);
         }
     }
 
     public override void SetWeapon(Weapon weapon)
     {
+        base.SetWeapon(weapon);
         weaponContent.forward = -rsoCameraDirection.Value;
     }
 

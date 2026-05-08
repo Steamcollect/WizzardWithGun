@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 public class PlayerMotor : EntityMotor
 {
     //[Header("Settings")]
-    Vector2 movementInput;
-
     [Header("References")]
     [SerializeField] InputActionReference movementIA;
 
@@ -38,8 +36,6 @@ public class PlayerMotor : EntityMotor
 
     private void Update()
     {
-        movementInput = movementIA.action.ReadValue<Vector2>().normalized;
-
-        movement.SetInput(movementInput);
+        movement.SetInput(movementIA.action.ReadValue<Vector2>().normalized);
     }
 }
