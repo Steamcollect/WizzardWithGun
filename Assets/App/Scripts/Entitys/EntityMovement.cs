@@ -4,20 +4,11 @@ using UnityEngine;
 public class EntityMovement : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float moveSpeed;
-    [SerializeField] float maxSpeed;
     Vector2 input;
 
     [Header("References")]
+    protected EntityStatistics statistics;
     [SerializeField] protected Rigidbody rb;
-
-    //[Space(10)]
-    // RSO
-    // RSF
-    // RSP
-
-    //[Header("Input")]
-    //[Header("Output")]
     
     /// <summary>
     /// Call on FixedUpdate, return clamp01 float base on speed on maxSpeed
@@ -28,14 +19,19 @@ public class EntityMovement : MonoBehaviour
     {
         Move();
     }
-    //protected abstract void OnFixedUpdate();
+
+    public virtual EntityMovement Initialize(EntityStatistics statistics)
+    {
+        this.statistics = statistics;
+        return this;
+    }
 
     void Move()
     {
-        rb.AddForce(input.ToVector3() * moveSpeed);
+        rb.AddForce(input.ToVector3() * statistics.MoveSpeed);
 
         float speedOnOne = rb.linearVelocity.sqrMagnitude;
-        OnSpeedChange?.Invoke(Mathf.Clamp01(rb.linearVelocity.sqrMagnitude / maxSpeed));
+        OnSpeedChange?.Invoke(Mathf.Clamp01(rb.linearVelocity.sqrMagnitude / statistics.MoveSpeed));
     }
 
     public void SetInput(Vector2 input)

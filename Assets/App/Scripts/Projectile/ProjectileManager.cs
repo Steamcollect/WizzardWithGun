@@ -1,6 +1,4 @@
 using MVsToolkit.Pool;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ProjectileManager : MonoBehaviour
@@ -9,15 +7,15 @@ public class ProjectileManager : MonoBehaviour
     [SerializeField] MVsPool<Projectile>[] projectiles;
 
     [Header("References")]
-    [SerializeField] RSF_GetProjectile rsfGetBullet;
+    [SerializeField] RSF_GetProjectile rsfGetProjetctile;
 
     private void OnEnable()
     {
-        rsfGetBullet.Add(GetBullet);
+        rsfGetProjetctile.Add(GetProjectile);
     }
     private void OnDisable()
     {
-        rsfGetBullet.Remove(GetBullet);
+        rsfGetProjetctile.Remove(GetProjectile);
     }
 
     private void Start()
@@ -28,7 +26,7 @@ public class ProjectileManager : MonoBehaviour
         }
     }
 
-    Projectile GetBullet(ProjectileType type)
+    Projectile GetProjectile(ProjectileType type)
     {
         if (projectiles[(int)type].TryGet(out Projectile p))
         {

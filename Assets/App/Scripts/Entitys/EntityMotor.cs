@@ -1,9 +1,6 @@
 using UnityEngine;
 public class EntityMotor : MonoBehaviour
 {
-    //[Header("Settings")]
-    string entityName;
-
     [Header("References")]
     [SerializeField] EntityStatistics statistics;
 
@@ -12,18 +9,8 @@ public class EntityMotor : MonoBehaviour
     [SerializeField] protected EntityCombat combat;
     [SerializeField] protected EntityMovement movement;
 
-    // RSO
-    // RSF
-    // RSP
-
     //[Header("Input")]
-    [Header("Output")]
-    [SerializeField] RSE_ReturnEntity rseReturnEntity;
-
-    private void Awake()
-    {
-        health.onDeath += ReturnToQueue;
-    }
+    //[Header("Output")]
 
     protected virtual void Start()
     {
@@ -32,17 +19,9 @@ public class EntityMotor : MonoBehaviour
 
     public void Setup()
     {
-        health.Setup(statistics);
-    }
-
-    public void SetName(string name)
-    {
-        entityName = name;
-    }
-    public string GetName() { return entityName; }
-    public void ReturnToQueue()
-    {
-        rseReturnEntity.Invoke(this);
+        health.Initialize(statistics);
+        movement.Initialize(statistics);
+        combat.Initialize(statistics);
     }
 
     public EntityHealth GetHealth() { return health; }

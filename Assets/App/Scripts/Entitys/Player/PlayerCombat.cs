@@ -59,7 +59,7 @@ public class PlayerCombat : EntityCombat
         }
     }
 
-    public void SetWeapon(Weapon weapon)
+    public override void SetWeapon(Weapon weapon)
     {
         weaponContent.forward = -rsoCameraDirection.Value;
     }

@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47dcbf7747f153d4bb89778f66874284, type: 3}
-  m_Name: RSE_ReturnEntity
+  m_Script: {fileID: 11500000, guid: 057b0ac2ef0b20a4f956e30b30a02a7b, type: 3}
+  m_Name: RSF_GetProjectile
   m_EditorClassIdentifier: 

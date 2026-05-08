@@ -7,22 +7,17 @@ public class EntityHealth : MonoBehaviour
     int maxHealth;
     int currentHealth;
 
-    //[Header("References")]
-
-    //[Space(10)]
-    // RSO
-    // RSF
-    // RSP
-
-    //[Header("Input")]
-    //[Header("Output")]
-
     public Action onDeath;
 
-    public void Setup(EntityStatistics statistics)
+    protected EntityStatistics statistics;
+
+    public EntityHealth Initialize(EntityStatistics statistics)
     {
         maxHealth = statistics.Health;
         currentHealth = maxHealth;
+
+        this.statistics = statistics;
+        return this;
     }
 
     public void TakeDamage(int damage)
