@@ -1,7 +1,6 @@
 ﻿using MVsToolkit.Attributes;
 using UnityEditor;
 using UnityEngine;
-using static SSO_EntitySpawningWeapon;
 
 [CreateAssetMenu(fileName = "SSO_EntitySpawningWeapon", menuName = "SSO/Entity/SSO_EntitySpawningWeapon")]
 public class SSO_EntitySpawningWeapon : ScriptableObject
@@ -15,7 +14,7 @@ public class SSO_EntitySpawningWeapon : ScriptableObject
         public float SpawningProbability;
     }
 
-    [SerializeField, DrawInRect("DrawProbabilitySlider")]
+    [SerializeField, DrawInRect("DrawProbabilitySlider", 300)]
     int ProbabilityDraw;
 
 #if UNITY_EDITOR
@@ -34,11 +33,10 @@ public class SSO_EntitySpawningWeapon : ScriptableObject
         if (total <= 0f)
             return;
 
-        const float sliderHeight = 12f;      // Hauteur FIXE du slider
+        const float sliderHeight = 12f;
         const float labelHeight = 16f;
         const float labelSpacing = 2f;
 
-        // Zone du slider
         Rect barRect = new Rect(
             r.x,
             r.y + (labelHeight + labelSpacing) * list.Count,
@@ -66,26 +64,41 @@ public class SSO_EntitySpawningWeapon : ScriptableObject
             Rect segRect = new Rect(x, barRect.y, width, barRect.height);
             EditorGUI.DrawRect(segRect, c);
 
-            // Label SANS MASQUE, toujours visible
             float percent = normalized * 100f;
             string label = $"{w.Type} ({percent:0.#}%)";
 
+            // Centre du segment
+            float midX = x + width * 0.5f;
+
+            // Taille réelle du texte
+            Vector2 textSize = EditorStyles.label.CalcSize(new GUIContent(label));
+            float labelWidth = textSize.x;
+
+            // Position idéale centrée
+            float labelX = midX - labelWidth * 0.5f;
+
+            // Clamp pour ne jamais dépasser
+            if (labelX < r.x)
+                labelX = r.x;
+
+            if (labelX + labelWidth > r.x + r.width)
+                labelX = r.x + r.width - labelWidth;
+
             Rect labelRect = new Rect(
-                r.x,
+                labelX,
                 r.y + i * (labelHeight + labelSpacing),
-                r.width,       // On laisse toute la largeur → jamais masqué
+                labelWidth,
                 labelHeight
             );
 
             var style = EditorStyles.label;
-            style.clipping = TextClipping.Overflow;   // IMPORTANT : aucun masquage
+            style.clipping = TextClipping.Overflow;
             style.alignment = TextAnchor.MiddleLeft;
 
             GUI.Label(labelRect, label, style);
 
-            // Trait vertical reliant label → segment
+            // Trait vertical label → segment
             Handles.color = c;
-            float midX = x + width * 0.5f;
             Handles.DrawLine(
                 new Vector3(midX, labelRect.yMax, 0),
                 new Vector3(midX, barRect.y, 0)

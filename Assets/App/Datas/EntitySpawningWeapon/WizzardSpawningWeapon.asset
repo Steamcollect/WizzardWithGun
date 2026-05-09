@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SSO_EntitySpawningWeapon
   Wepons:
   - Type: 1
-    SpawningProbability: 90
-  - Type: 1
-    SpawningProbability: 10
+    SpawningProbability: 100
   ProbabilityDraw: 0
