@@ -1,4 +1,3 @@
-using MVsToolkit.Attributes;
 using UnityEngine;
 
 public abstract class EntityCombat : MonoBehaviour
@@ -15,21 +14,25 @@ public abstract class EntityCombat : MonoBehaviour
 
     public EntityCombat Initialize(EntityStatistics statistics)
     {
-        InitializeFirstWeapon();
         this.statistics = statistics;
+
+        SetWeapon(spawningWeapon.GetRandomWeapon().prefab);
+        
         return this;
     }
 
-    void InitializeFirstWeapon()
+    public virtual void SetWeapon(Weapon weaponPrefab)
     {
-        SSO_EntitySpawningWeapon.EntitySpawningWeapon weapon = spawningWeapon.GetRandomWeapon();
-        this.weapon = Instantiate(weapon.prefab, transform);
-        this.weapon.transform.localPosition = Vector3.zero;
-        this.weapon.transform.localRotation = Quaternion.identity;
-    }
+        if(weapon != null)
+        {
+            weapon.Destroy();
+        }
 
-    public virtual void SetWeapon(Weapon weapon)
-    {
-        this.weapon = weapon;
+        weapon = Instantiate(weaponPrefab, transform);
+        weapon.transform.localPosition = Vector3.zero;
+        weapon.transform.localRotation = Quaternion.identity;
+
+        weapon.RotateTowardCamera(-rsoCameraDirection.Value);
+        weapon.Initialize(statistics);
     }
 }

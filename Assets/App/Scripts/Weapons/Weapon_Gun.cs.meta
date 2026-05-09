@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: f1e33b7b785215444a0e1b593be826dd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - content: {instanceID: 0}
+  - bulletSpawnPoint: {instanceID: 0}
+  - musleFlashGO: {instanceID: 0}
+  - anim: {instanceID: 0}
+  - rseCamShoke: {fileID: 11400000, guid: 188569ae7349ed64e86840cac1ae9d6a, type: 2}
+  - rsfGetBullet: {fileID: 11400000, guid: fc433a44ea4086442846378f0b9c94f7, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

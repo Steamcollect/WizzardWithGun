@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 16f5cb70be7d21c429d9f420bf71858c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - spawningWeapon: {instanceID: 0}
+  - rsoCameraDirection: {fileID: 11400000, guid: 0e1cf036c6757564d80aa120b1476353,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

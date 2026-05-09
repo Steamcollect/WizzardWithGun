@@ -25,6 +25,7 @@ public class Weapon_Gun : Weapon
     [SerializeField] RSE_CameraShoke rseCamShoke;
     [SerializeField] RSF_GetProjectile rsfGetBullet;
 
+    #region Exposed Methods
     public override void StartAttack(Vector3 lookDir)
     {
         if (!CanAttack()) return;
@@ -48,7 +49,9 @@ public class Weapon_Gun : Weapon
 
         rseCamShoke.Invoke(camShokeRange);
     }
+    #endregion Exposed Methods
 
+    #region Methods
     void OnBulletTouchSomething(Projectile bullet, Collider touch)
     {
         if(touch.TryGetComponent(out EntityMotor entity))
@@ -65,4 +68,5 @@ public class Weapon_Gun : Weapon
         yield return new WaitForSeconds(musleFlashDelay);
         musleFlashGO.SetActive(false);
     }
+    #endregion Methods
 }

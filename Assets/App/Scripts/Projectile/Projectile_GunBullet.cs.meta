@@ -1,2 +1,19 @@
 fileFormatVersion: 2
 guid: f1bdd3bac02273f4d895ff29560e7b6a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rb: {instanceID: 0}
+  - ssoGameplayConfig: {fileID: 11400000, guid: e14667cab2b59954e86d7af5fb1f5ecf,
+      type: 2}
+  - rsoCameraDirection: {fileID: 11400000, guid: 0e1cf036c6757564d80aa120b1476353,
+      type: 2}
+  - rsoPlayerTransform: {fileID: 11400000, guid: 2bb91fd9d58091e4c96cf498c1a522bd,
+      type: 2}
+  - trail: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

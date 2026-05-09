@@ -11,6 +11,8 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField, ReadOnly] protected bool isAttacking = false;
     [SerializeField, ReadOnly] protected bool isOnAttackCooldown = false;
 
+    Vector3 cameraLookDir;
+
     [Header("Settings")]
     [SerializeField] Transform content;
 
@@ -18,10 +20,17 @@ public abstract class Weapon : MonoBehaviour
 
     public Action<EntityMotor> onDamageApplyToEntity;
 
+    #region Exposed Methods
     public virtual Weapon Initialize(EntityStatistics statistics)
     {
         this.statistics = statistics;
         return this;
+    }
+
+    public void RotateTowardCamera(Vector3 camDirection)
+    {
+        cameraLookDir = camDirection;
+        content.forward = camDirection;
     }
 
     public virtual void Rotate(float angle)
@@ -31,10 +40,9 @@ public abstract class Weapon : MonoBehaviour
         if (angle < -90 || angle > 90) content.localScale = new Vector3(1, -1, 1);
         else content.localScale = Vector3.one;
 
-        //content.eulerAngles = new Vector3(
-        //                        content.eulerAngles.x,
-        //                       content.eulerAngles.y,
-        //                        transform.parent.localEulerAngles.y);
+        content.rotation =
+            Quaternion.LookRotation(cameraLookDir, Vector3.up)
+            * Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     public virtual void StartAttack(Vector3 lookDir)
@@ -47,13 +55,6 @@ public abstract class Weapon : MonoBehaviour
         isAttacking = false;
     }
 
-    protected IEnumerator AttackCooldown()
-    {
-        isOnAttackCooldown = true;
-        yield return new WaitForSeconds(attackCooldown);
-        isOnAttackCooldown = false;
-    }
-
     /// <summary>
     /// Can the weapon currently attack, can be override if the current weapon require
     /// </summary>
@@ -62,4 +63,19 @@ public abstract class Weapon : MonoBehaviour
     {
         return !isOnAttackCooldown && !isAttacking;
     }
+
+    public virtual void Destroy()
+    {
+        Destroy(gameObject);
+    }
+    #endregion Exposed Methods
+
+    #region Methods
+    protected IEnumerator AttackCooldown()
+    {
+        isOnAttackCooldown = true;
+        yield return new WaitForSeconds(attackCooldown);
+        isOnAttackCooldown = false;
+    }
+    #endregion Methods
 }
