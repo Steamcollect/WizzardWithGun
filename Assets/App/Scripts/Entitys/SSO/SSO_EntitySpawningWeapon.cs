@@ -11,11 +11,38 @@ public class SSO_EntitySpawningWeapon : ScriptableObject
     public struct EntitySpawningWeapon
     {
         public WeaponType Type;
+        public Weapon prefab;
         public float SpawningProbability;
     }
 
     [SerializeField, DrawInRect("DrawProbabilitySlider", 300)]
     int ProbabilityDraw;
+
+    public EntitySpawningWeapon GetRandomWeapon()
+    {
+        if (Wepons == null || Wepons.Length == 0)
+            return default;
+
+        float total = 0f;
+        for (int i = 0; i < Wepons.Length; i++)
+            total += Mathf.Max(0f, Wepons[i].SpawningProbability);
+
+        if (total <= 0f)
+            return default;
+
+        float r = Random.value * total;
+
+        float cumulative = 0f;
+        for (int i = 0; i < Wepons.Length; i++)
+        {
+            cumulative += Mathf.Max(0f, Wepons[i].SpawningProbability);
+            if (r <= cumulative)
+                return Wepons[i];
+        }
+
+        return Wepons[Wepons.Length - 1];
+    }
+
 
 #if UNITY_EDITOR
     void DrawProbabilitySlider(Rect r)

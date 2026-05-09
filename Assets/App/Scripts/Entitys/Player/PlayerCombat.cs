@@ -33,12 +33,12 @@ public class PlayerCombat : EntityCombat
 
     void AttackInputStart(InputAction.CallbackContext ctx)
     {
-        currentWeapon.StartAttack(lookDir);
+        weapon.StartAttack(lookDir);
     }
     
     void AttackInputRelease(InputAction.CallbackContext ctx)
     {
-        currentWeapon.CancelAttack(lookDir);
+        weapon.CancelAttack(lookDir);
     }
 
     void RotateWeapon()
@@ -48,16 +48,14 @@ public class PlayerCombat : EntityCombat
             lookDir = (pos - transform.position).normalized;
             float angle = Mathf.Atan2(lookDir.z, lookDir.x) * Mathf.Rad2Deg;            
 
-            weaponContent.localRotation = Quaternion.Euler(0, -angle, 0);
-
-            currentWeapon.Rotate(angle);
+            weapon.Rotate(angle);
         }
     }
 
     public override void SetWeapon(Weapon weapon)
     {
         base.SetWeapon(weapon);
-        weaponContent.forward = -rsoCameraDirection.Value;
+        base.weapon.transform.forward = -rsoCameraDirection.Value;
     }
 
     bool GetMousePositionOnGround(out Vector3 hitPosition)

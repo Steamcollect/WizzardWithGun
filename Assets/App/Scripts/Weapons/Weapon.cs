@@ -26,6 +26,8 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void Rotate(float angle)
     {
+        transform.eulerAngles = new Vector3(0, -angle, 0);
+
         if (angle < -90 || angle > 90) content.localScale = new Vector3(1, -1, 1);
         else content.localScale = Vector3.one;
 

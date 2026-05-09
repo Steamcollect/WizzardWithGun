@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SSO_EntitySpawningWeapon
   Wepons:
   - Type: 1
+    prefab: {fileID: 598754404048079561, guid: cfa0cff7c4643354983a9ddcbc41df65, type: 3}
     SpawningProbability: 100
   ProbabilityDraw: 0
