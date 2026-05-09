@@ -1,7 +1,7 @@
 using MVsToolkit.Pool;
 using UnityEngine;
 
-public class ProjectileManager : MonoBehaviour
+public class ProjectilePoolManager : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] MVsPool<Projectile>[] projectiles;

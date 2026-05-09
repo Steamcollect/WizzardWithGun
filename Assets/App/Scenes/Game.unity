@@ -202,7 +202,7 @@ Transform:
   m_GameObject: {fileID: 92296783}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.89299023, y: -1.6497879, z: -3.5250525}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1338,7 +1338,7 @@ PrefabInstance:
     - target: {fileID: 6555445986815269286, guid: 29dfb187d5fe9254089192992a86189e,
         type: 3}
       propertyPath: m_Name
-      value: BulletManager
+      value: ProjectilePoolManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1563,7 +1563,7 @@ MonoBehaviour:
   attackCooldown: 0.2
   isAttacking: 0
   isOnAttackCooldown: 0
-  visual: {fileID: 823879991}
+  content: {fileID: 823879991}
   bulletSpeed: 15
   knockback: 50
   musleFlashDelay: 0.05
@@ -1702,6 +1702,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizzard
       objectReference: {fileID: 0}
+    - target: {fileID: 5798101292402797526, guid: 83734acaebd248a439553d71024bbbe4,
+        type: 3}
+      propertyPath: currentWeapon
+      value: 
+      objectReference: {fileID: 4724070451682227123}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

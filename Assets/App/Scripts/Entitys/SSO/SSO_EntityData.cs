@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SSO_EntityData", menuName = "SSO/_/SSO_EntityData")]
+[CreateAssetMenu(fileName = "SSO_EntityData", menuName = "SSO/Entity/SSO_EntityData")]
 public class SSO_EntityData : ScriptableObject
 {
     public int Health;
