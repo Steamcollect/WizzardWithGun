@@ -16,19 +16,21 @@ public abstract class EntityCombat : MonoBehaviour
     public EntityCombat Initialize(EntityStatistics statistics)
     {
         this.statistics = statistics;
-        SetWeapon(rsfGetWeapon.Invoke(spawningWeapon.GetRandomWeapon().Type));
+        HandleWeapon(rsfGetWeapon.Invoke(spawningWeapon.GetRandomWeapon().Type));
         
         return this;
     }
 
-    public virtual void SetWeapon(Weapon weaponPrefab)
+    public virtual void HandleWeapon(Weapon newWeapon)
     {
         if(weapon != null)
         {
             weapon.Destroy();
         }
 
-        weapon = Instantiate(weaponPrefab, transform);
+        weapon = newWeapon;
+
+        weapon.transform.SetParent(transform);
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
 
