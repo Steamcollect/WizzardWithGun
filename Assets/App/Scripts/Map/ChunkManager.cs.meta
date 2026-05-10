@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4757d2938f3532444a9e9997ece93683
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - chunkPrefab: {fileID: 5831744495122153791, guid: 55cb53ab57383034194597bccb983c84,
+      type: 3}
+  - chunksParent: {instanceID: 0}
+  - rsoPlayerTransform: {fileID: 11400000, guid: 2bb91fd9d58091e4c96cf498c1a522bd,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
