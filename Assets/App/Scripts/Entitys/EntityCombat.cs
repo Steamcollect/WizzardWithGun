@@ -11,12 +11,12 @@ public abstract class EntityCombat : MonoBehaviour
 
     [Space]
     [SerializeField] protected RSO_CameraDirection rsoCameraDirection;
+    [SerializeField] protected RSF_GetWeapon rsfGetWeapon;
 
     public EntityCombat Initialize(EntityStatistics statistics)
     {
         this.statistics = statistics;
-
-        SetWeapon(spawningWeapon.GetRandomWeapon().prefab);
+        SetWeapon(rsfGetWeapon.Invoke(spawningWeapon.GetRandomWeapon().Type));
         
         return this;
     }
@@ -33,6 +33,6 @@ public abstract class EntityCombat : MonoBehaviour
         weapon.transform.localRotation = Quaternion.identity;
 
         weapon.RotateTowardCamera(-rsoCameraDirection.Value);
-        weapon.Initialize(statistics);
+        weapon.StartHandle(statistics);
     }
 }

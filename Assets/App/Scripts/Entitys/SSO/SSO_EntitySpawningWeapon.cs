@@ -11,7 +11,6 @@ public class SSO_EntitySpawningWeapon : ScriptableObject
     public struct EntitySpawningWeapon
     {
         public WeaponType Type;
-        public Weapon prefab;
         public float SpawningProbability;
     }
 

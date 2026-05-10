@@ -1,2 +1,12 @@
 fileFormatVersion: 2
 guid: 2cc39c99423d43b48a366077fc12a0b3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rsfGetWeapon: {fileID: 11400000, guid: 16de3ba0302861545a7a079bb33a8c28, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

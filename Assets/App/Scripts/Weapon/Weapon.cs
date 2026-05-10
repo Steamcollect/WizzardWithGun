@@ -1,4 +1,5 @@
 using MVsToolkit.Attributes;
+using MVsToolkit.Pool;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -13,15 +14,23 @@ public abstract class Weapon : MonoBehaviour
 
     Vector3 cameraLookDir;
 
-    [Header("Settings")]
+    [Header("References")]
     [SerializeField] Transform content;
+
+    MVsPool<Weapon> poolConnected;
 
     protected EntityStatistics statistics;
 
     public Action<EntityMotor> onDamageApplyToEntity;
 
     #region Exposed Methods
-    public virtual Weapon Initialize(EntityStatistics statistics)
+    public Weapon Initialize(MVsPool<Weapon> pool)
+    {
+        poolConnected = pool;
+        return this;
+    }
+
+    public virtual Weapon StartHandle(EntityStatistics statistics)
     {
         this.statistics = statistics;
         return this;
@@ -66,7 +75,7 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void Destroy()
     {
-        Destroy(gameObject);
+        poolConnected.Release(this);
     }
     #endregion Exposed Methods
 

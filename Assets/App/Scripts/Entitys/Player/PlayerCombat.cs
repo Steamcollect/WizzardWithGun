@@ -52,12 +52,6 @@ public class PlayerCombat : EntityCombat
         }
     }
 
-    public override void SetWeapon(Weapon weapon)
-    {
-        base.SetWeapon(weapon);
-        base.weapon.transform.forward = -rsoCameraDirection.Value;
-    }
-
     bool GetMousePositionOnGround(out Vector3 hitPosition)
     {
         hitPosition = Vector3.zero;

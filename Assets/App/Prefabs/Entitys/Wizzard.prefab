@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93346e513fba054fb6f3fa85f57bca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeapon: {fileID: 0}
   spawningWeapon: {fileID: 11400000, guid: 846f1b563766b5d44987679771a988cf, type: 2}
   rsoCameraDirection: {fileID: 11400000, guid: 0e1cf036c6757564d80aa120b1476353, type: 2}
+  rsfGetWeapon: {fileID: 11400000, guid: 16de3ba0302861545a7a079bb33a8c28, type: 2}
   mousePositionIA: {fileID: -687391440711254336, guid: 7dbbb6b96c3aeac46907f95ffd2da4fc,
     type: 3}
   attackIA: {fileID: 2038148157468135636, guid: 7dbbb6b96c3aeac46907f95ffd2da4fc,
@@ -407,3 +407,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341a7c73354cc8d4880b1d46bc9fff9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0

@@ -1,15 +1,16 @@
 using System;
+using MVsToolkit.Attributes;
 using UnityEngine;
 
 public class EntityHealth : MonoBehaviour
 {
     [Header("Settings")]
-    int maxHealth;
-    int currentHealth;
-
-    public Action onDeath;
+    [SerializeField, ReadOnly] int maxHealth;
+    [SerializeField, ReadOnly] int currentHealth;
 
     protected EntityStatistics statistics;
+
+    public Action OnDeath;
 
     public EntityHealth Initialize(EntityStatistics statistics)
     {
@@ -32,6 +33,6 @@ public class EntityHealth : MonoBehaviour
 
     void Die()
     {
-        onDeath?.Invoke();
+        OnDeath?.Invoke();
     }
 }

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3367050170480005179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 874147320721663242}
+  - component: {fileID: 3129717677454446651}
+  m_Layer: 0
+  m_Name: WeaponPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &874147320721663242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367050170480005179}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3129717677454446651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367050170480005179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc39c99423d43b48a366077fc12a0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponPoolManager
+  weapons:
+  - Prefab: {fileID: 598754404048079561, guid: cfa0cff7c4643354983a9ddcbc41df65, type: 3}
+    m_SetParent: 1
+    Parent: {fileID: 874147320721663242}
+    m_LimitSize: 0
+    MaximumPoolSize: 0
+    m_Prewarm: 1
+    PrewarmCount: 5
+  - Prefab: {fileID: 598754404048079561, guid: cfa0cff7c4643354983a9ddcbc41df65, type: 3}
+    m_SetParent: 1
+    Parent: {fileID: 874147320721663242}
+    m_LimitSize: 0
+    MaximumPoolSize: 0
+    m_Prewarm: 1
+    PrewarmCount: 5
+  rsfGetWeapon: {fileID: 11400000, guid: 16de3ba0302861545a7a079bb33a8c28, type: 2}

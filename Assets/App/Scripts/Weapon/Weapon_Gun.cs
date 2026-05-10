@@ -59,7 +59,7 @@ public class Weapon_Gun : Weapon
             onDamageApplyToEntity?.Invoke(entity);
         }
 
-        bullet.ReturnToQueue();
+        bullet.Destroy();
     }
 
     IEnumerator MusleFlashAnimation()

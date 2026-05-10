@@ -56,7 +56,7 @@ public abstract class Projectile : MonoBehaviour
         if (Vector3.Distance(transform.position, rsoPlayerTransform.Value.position)
             > ssoGameplayConfig.maxBulletDistanceFromPlayer)
         {
-            ReturnToQueue();
+            Destroy();
         }
     }
 
@@ -67,7 +67,7 @@ public abstract class Projectile : MonoBehaviour
     }
     protected virtual void _OnTriggerEnter(Collider other) { }
 
-    public void ReturnToQueue()
+    public void Destroy()
     {
         poolConnected.Release(this);
     }
