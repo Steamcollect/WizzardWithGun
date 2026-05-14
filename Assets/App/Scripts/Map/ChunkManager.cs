@@ -1,5 +1,6 @@
 ﻿using MVsToolkit.Attributes;
 using MVsToolkit.Utilities;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ChunkManager : MonoBehaviour
@@ -55,6 +56,27 @@ public class ChunkManager : MonoBehaviour
         }
     }
 
+    [Button]
+    void ClearChunks()
+    {
+        if (chunks != null && chunks.Length > 0)
+        {
+            for (int i = 0; i < chunks.Length; i++)
+            {
+                if (chunks[i] != null)
+                {
+                    if (Application.isPlaying)
+                        Destroy(chunks[i].gameObject);
+                    else
+                        DestroyImmediate(chunks[i].gameObject);
+                }
+            }
+        }
+
+        int size = chunksLoadedRadius * 2 + 1;
+        chunks = new Transform[size * size];
+    }
+
     void UpdateChunksPosition()
     {
         Vector2 playerPos = rsoPlayerTransform.Get().position.ToVector2();
@@ -75,8 +97,8 @@ public class ChunkManager : MonoBehaviour
 
         if(newPlayerCurrentChunk !=  playerCurrentChunk)
         {
-
             playerCurrentChunk = newPlayerCurrentChunk;
+            RecycleOutOfRangeChunks();
         }
 
         MVsDebug.DrawCircle(
@@ -86,25 +108,60 @@ public class ChunkManager : MonoBehaviour
                     Color.red);
     }
 
-    [Button]
-    void ClearChunks()
+    void RecycleOutOfRangeChunks()
     {
-        if (chunks != null && chunks.Length > 0)
+        int size = chunksLoadedRadius * 2 + 1;
+
+        HashSet<Vector2Int> validPositions = new HashSet<Vector2Int>();
+
+        for (int x = -chunksLoadedRadius; x <= chunksLoadedRadius; x++)
         {
-            for (int i = 0; i < chunks.Length; i++)
+            for (int y = -chunksLoadedRadius; y <= chunksLoadedRadius; y++)
             {
-                if (chunks[i] != null)
-                {
-                    if(Application.isPlaying)
-                        Destroy(chunks[i].gameObject);
-                    else
-                        DestroyImmediate(chunks[i].gameObject);
-                }
+                validPositions.Add(new Vector2Int(
+                    playerCurrentChunk.x + x,
+                    playerCurrentChunk.y + y
+                ));
             }
         }
 
-        int size = chunksLoadedRadius * 2 + 1;
-        chunks = new Transform[size * size];
+        int[] rotations = new int[4] { 0, 90, 180, 270 };
+        foreach (Transform chunk in chunks)
+        {
+            Vector2Int chunkCoord = new Vector2Int(
+                Mathf.RoundToInt(chunk.position.x / chunkSize),
+                Mathf.RoundToInt(chunk.position.z / chunkSize)
+            );
+
+            if (!validPositions.Contains(chunkCoord))
+            {
+                foreach (var target in validPositions)
+                {
+                    Vector3 targetPos = new Vector3(
+                        target.x * chunkSize,
+                        mapHeight,
+                        target.y * chunkSize
+                    );
+
+                    bool occupied = false;
+                    foreach (Transform other in chunks)
+                    {
+                        if (other != chunk && Vector3.Distance(other.position, targetPos) < 0.1f)
+                        {
+                            occupied = true;
+                            break;
+                        }
+                    }
+
+                    if (!occupied)
+                    {
+                        chunk.position = targetPos;
+                        chunk.rotation = Quaternion.Euler(0, rotations.GetRandom(), 0);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     private void OnDrawGizmos()
