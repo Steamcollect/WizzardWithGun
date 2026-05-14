@@ -112,55 +112,52 @@ public class ChunkManager : MonoBehaviour
     {
         int size = chunksLoadedRadius * 2 + 1;
 
-        HashSet<Vector2Int> validPositions = new HashSet<Vector2Int>();
-
+        //=== 1. Générer les positions valides
+        List<Vector2Int> validCoords = new List<Vector2Int>(size * size);
         for (int x = -chunksLoadedRadius; x <= chunksLoadedRadius; x++)
         {
             for (int y = -chunksLoadedRadius; y <= chunksLoadedRadius; y++)
             {
-                validPositions.Add(new Vector2Int(
+                validCoords.Add(new Vector2Int(
                     playerCurrentChunk.x + x,
                     playerCurrentChunk.y + y
                 ));
             }
         }
 
-        int[] rotations = new int[4] { 0, 90, 180, 270 };
+        //=== 2. Indexer les chunks existants
+        Dictionary<Vector2Int, Transform> occupied = new Dictionary<Vector2Int, Transform>(chunks.Length);
+        List<Transform> outOfRange = new List<Transform>();
+
         foreach (Transform chunk in chunks)
         {
-            Vector2Int chunkCoord = new Vector2Int(
+            Vector2Int coord = new Vector2Int(
                 Mathf.RoundToInt(chunk.position.x / chunkSize),
                 Mathf.RoundToInt(chunk.position.z / chunkSize)
             );
 
-            if (!validPositions.Contains(chunkCoord))
-            {
-                foreach (var target in validPositions)
-                {
-                    Vector3 targetPos = new Vector3(
-                        target.x * chunkSize,
-                        mapHeight,
-                        target.y * chunkSize
-                    );
+            if (validCoords.Contains(coord))
+                occupied[coord] = chunk;
+            else
+                outOfRange.Add(chunk);
+        }
 
-                    bool occupied = false;
-                    foreach (Transform other in chunks)
-                    {
-                        if (other != chunk && Vector3.Distance(other.position, targetPos) < 0.1f)
-                        {
-                            occupied = true;
-                            break;
-                        }
-                    }
+        //=== 3. Trouver les positions libres
+        List<Vector2Int> freeCoords = new List<Vector2Int>(validCoords.Count);
+        foreach (var coord in validCoords)
+            if (!occupied.ContainsKey(coord))
+                freeCoords.Add(coord);
 
-                    if (!occupied)
-                    {
-                        chunk.position = targetPos;
-                        chunk.rotation = Quaternion.Euler(0, rotations.GetRandom(), 0);
-                        break;
-                    }
-                }
-            }
+        //=== 4. Réassigner les chunks hors zone
+        int[] rotations = { 0, 90, 180, 270 };
+
+        for (int i = 0; i < outOfRange.Count; i++)
+        {
+            Transform chunk = outOfRange[i];
+            Vector2Int target = freeCoords[i];
+
+            chunk.position = new Vector3(target.x * chunkSize, mapHeight, target.y * chunkSize);
+            chunk.rotation = Quaternion.Euler(0, rotations.GetRandom(), 0);
         }
     }
 
