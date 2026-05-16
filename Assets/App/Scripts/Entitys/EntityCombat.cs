@@ -5,18 +5,14 @@ public abstract class EntityCombat : MonoBehaviour
     [Header("Main References")]
     protected Weapon weapon;
     protected EntityStatistics statistics;
-
+    
     [Space]
-    [SerializeField] protected SSO_EntitySpawningWeapon spawningWeapon;
-
-    [Space]
-    [SerializeField] protected RSO_CameraDirection rsoCameraDirection;
     [SerializeField] protected RSF_GetWeapon rsfGetWeapon;
 
     public EntityCombat Initialize(EntityStatistics statistics)
     {
         this.statistics = statistics;
-        HandleWeapon(rsfGetWeapon.Invoke(spawningWeapon.GetRandomWeapon().Type));
+        HandleWeapon(rsfGetWeapon.Invoke(statistics.SpawningWeapon.GetRandomWeapon().Type));
         
         return this;
     }
@@ -34,7 +30,7 @@ public abstract class EntityCombat : MonoBehaviour
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
 
-        weapon.RotateTowardCamera(-rsoCameraDirection.Value);
+        weapon.RotateTowardCamera(-CameraController.LookDirection);
         weapon.StartHandle(statistics);
     }
 }

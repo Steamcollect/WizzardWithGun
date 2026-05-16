@@ -19,9 +19,6 @@ public class ChunkManager : MonoBehaviour
 
     Transform[] chunks;
 
-    [Space]
-    [SerializeField] RSO_PlayerTransform rsoPlayerTransform;
-
     //[Header("Input")]
     //[Header("Output")]
 
@@ -79,7 +76,7 @@ public class ChunkManager : MonoBehaviour
 
     void UpdateChunksPosition()
     {
-        Vector2 playerPos = rsoPlayerTransform.Get().position.ToVector2();
+        Vector2 playerPos = PlayerController.Transform.position.ToVector2();
         Vector2 currentChunkPos = (Vector2)playerCurrentChunk * chunkSize;
         Vector2Int newPlayerCurrentChunk = playerCurrentChunk;
 

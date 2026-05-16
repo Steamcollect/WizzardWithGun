@@ -72,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 3564644041951737089}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -210,6 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1975062308879571955}
+  - component: {fileID: 3653565146366678247}
   m_Layer: 0
   m_Name: Combat
   m_TagString: Untagged
@@ -232,6 +233,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2481272658002859699}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3653565146366678247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417240193287100791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1b6949160b59241a0890bfff1d1add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DefaultEnemyCombat
+  spawningWeapon: {fileID: 11400000, guid: dcb8558c65934004cb97d052145d0adc, type: 2}
+  rsfGetWeapon: {fileID: 11400000, guid: 16de3ba0302861545a7a079bb33a8c28, type: 2}
 --- !u!1 &7885998192080409188
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +258,7 @@ GameObject:
   - component: {fileID: 2481272658002859699}
   - component: {fileID: 7147927723166540820}
   - component: {fileID: 5456018327356698569}
+  - component: {fileID: 5431401326717017114}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -258,7 +274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7885998192080409188}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8, y: 1, z: -5.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -320,6 +336,22 @@ CapsuleCollider:
   m_Height: 1.5519984
   m_Direction: 1
   m_Center: {x: 0, y: -0.06404948, z: 0}
+--- !u!114 &5431401326717017114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7885998192080409188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6544b2c9f6b15ec4492f0093612c3e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DefaultEnemyController
+  statistics: {fileID: 4343977726229585054}
+  health: {fileID: 7085183260481501456}
+  combat: {fileID: 3653565146366678247}
+  movement: {fileID: 6256461773109664432}
 --- !u!1 &8193277978739381425
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a37e15e54140c94685dfa563e4671e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityStatistics
-  data: {fileID: 11400000, guid: e8f4833554626b6458617bd49785b19d, type: 2}
+  data: {fileID: 11400000, guid: 861f40d364395344ab7db5eb5a16dd74, type: 2}
   Health: 0
   MoveSpeed: 0
   Damage: 0

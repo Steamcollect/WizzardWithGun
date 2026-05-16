@@ -320,9 +320,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceFromTarget: 15
   timeOffset: 0.2
-  rsoCameraDirection: {fileID: 11400000, guid: 0e1cf036c6757564d80aa120b1476353, type: 2}
-  rseSetCamTarget: {fileID: 11400000, guid: 916276e0c677eca45867c28b7664ea28, type: 2}
-  rseCameraShoke: {fileID: 11400000, guid: 188569ae7349ed64e86840cac1ae9d6a, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,11 +583,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 924590883}
     m_Modifications:
-    - target: {fileID: 2294320403171220413, guid: 9855d84fa89cc194a8695ed1af8009ae,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 2481272658002859699, guid: 9855d84fa89cc194a8695ed1af8009ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -646,8 +638,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 363448258785905781, guid: 9855d84fa89cc194a8695ed1af8009ae, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -918,11 +909,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wizzard
-      objectReference: {fileID: 0}
-    - target: {fileID: 8587185115095750163, guid: 83734acaebd248a439553d71024bbbe4,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

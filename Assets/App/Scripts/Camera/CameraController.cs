@@ -4,15 +4,14 @@ public class CameraController : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float distanceFromTarget;
-    Vector3 posOffset;
-
     [SerializeField] float timeOffset;
 
+    Vector3 posOffset;
     Vector3 velocity;
 
-    [Header("References")]
-    [SerializeField] RSO_CameraDirection rsoCameraDirection;
+    public static Vector3 LookDirection;
 
+    //[Header("References")]
     Transform target;
 
     static CameraController instance;
@@ -20,7 +19,7 @@ public class CameraController : MonoBehaviour
     #region Unity Methods
     private void Awake()
     {
-        rsoCameraDirection.Value = transform.position.normalized;
+        LookDirection = transform.position.normalized;
 
         if(instance != null) Destroy(gameObject);
         else instance = this;

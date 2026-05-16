@@ -9,6 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2b334c08dcc12743a192ba273f05c3e, type: 3}
-  m_Name: RSO_CameraDirection
+  m_Script: {fileID: 11500000, guid: f2c3287426fe2744289006b0c8e0a2a0, type: 3}
+  m_Name: GoblinData
   m_EditorClassIdentifier: 
+  Health: 5
+  Damage: 1
+  MoveSpeed: 30
+  SpawningWeapon: {fileID: 11400000, guid: dcb8558c65934004cb97d052145d0adc, type: 2}

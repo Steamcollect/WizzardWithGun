@@ -4,15 +4,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : EntityController
 {
     //[Header("Settings")]
+    public static Transform Transform;
+
     [Header("References")]
     [SerializeField] InputActionReference movementIA;
 
-    [Space(10)]
-    [SerializeField] RSO_PlayerTransform rsoPlayerTransform;
-
     private void Awake()
     {
-        rsoPlayerTransform.Value = transform;
+        Transform = transform;
     }
 
     private void OnEnable()
