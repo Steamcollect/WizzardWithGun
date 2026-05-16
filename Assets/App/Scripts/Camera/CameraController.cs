@@ -11,34 +11,19 @@ public class CameraController : MonoBehaviour
     Vector3 velocity;
 
     [Header("References")]
+    [SerializeField] RSO_CameraDirection rsoCameraDirection;
+
     Transform target;
 
-    //[Space(10)]
-    // RSO
-    [SerializeField] RSO_CameraDirection rsoCameraDirection;
-    // RSF
-    // RSP
+    static CameraController instance;
 
-    [Header("Input")]
-    [SerializeField] RSE_SetCameraTarget rseSetCamTarget;
-    [SerializeField] RSE_CameraShoke rseCameraShoke;
-
-    //[Header("Output")]
-
+    #region Unity Methods
     private void Awake()
     {
         rsoCameraDirection.Value = transform.position.normalized;
-    }
 
-    private void OnEnable()
-    {
-        rseSetCamTarget.Add(SetTarget);
-        rseCameraShoke.Add(Shoke);
-    }
-    private void OnDisable()
-    {
-        rseSetCamTarget.Remove(SetTarget);
-        rseCameraShoke.Remove(Shoke);
+        if(instance != null) Destroy(gameObject);
+        else instance = this;
     }
 
     private void Update()
@@ -49,18 +34,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    void SetTarget(Transform target)
-    {
-        this.target = target;
-    }
-
-    void Shoke(float range)
-    {
-        Vector3 pos = Random.onUnitSphere * range;
-        transform.position += pos;
-    }
-
-    private void OnValidate()
+    void OnValidate()
     {
         Vector3 posDir = transform.position.normalized;
 
@@ -68,4 +42,30 @@ public class CameraController : MonoBehaviour
         posOffset = posDir * distanceFromTarget;
         transform.position = posOffset;
     }
+    #endregion Unity Methods
+
+    #region Exposed Methods
+    public static void SetTarget(Transform target)
+    {
+        if (instance != null) instance._SetTarget(target);
+    }
+
+    public static void Shoke(float force)
+    {
+        if (instance != null) instance._Shoke(force);
+    }
+    #endregion Exposed Methods
+
+    #region Methods
+    void _SetTarget(Transform target)
+    {
+        this.target = target;
+    }
+
+    void _Shoke(float force)
+    {
+        Vector3 pos = Random.onUnitSphere * force;
+        transform.position += pos;
+    }
+    #endregion Methods    
 }

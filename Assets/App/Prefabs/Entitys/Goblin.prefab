@@ -73,7 +73,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2481272658002859699}
@@ -210,7 +210,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1975062308879571955}
-  - component: {fileID: 4526628964665957507}
   m_Layer: 0
   m_Name: Combat
   m_TagString: Untagged
@@ -233,25 +232,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2481272658002859699}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4526628964665957507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7417240193287100791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b93346e513fba054fb6f3fa85f57bca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawningWeapon: {fileID: 11400000, guid: 846f1b563766b5d44987679771a988cf, type: 2}
-  rsoCameraDirection: {fileID: 11400000, guid: 0e1cf036c6757564d80aa120b1476353, type: 2}
-  rsfGetWeapon: {fileID: 11400000, guid: 16de3ba0302861545a7a079bb33a8c28, type: 2}
-  mousePositionIA: {fileID: -687391440711254336, guid: 7dbbb6b96c3aeac46907f95ffd2da4fc,
-    type: 3}
-  attackIA: {fileID: 2038148157468135636, guid: 7dbbb6b96c3aeac46907f95ffd2da4fc,
-    type: 3}
 --- !u!1 &7885998192080409188
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +243,6 @@ GameObject:
   - component: {fileID: 2481272658002859699}
   - component: {fileID: 7147927723166540820}
   - component: {fileID: 5456018327356698569}
-  - component: {fileID: 363448258785905781}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -341,26 +320,6 @@ CapsuleCollider:
   m_Height: 1.5519984
   m_Direction: 1
   m_Center: {x: 0, y: -0.06404948, z: 0}
---- !u!114 &363448258785905781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7885998192080409188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbcd91a76fd25e44eba1facf9b064ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statistics: {fileID: 4343977726229585054}
-  health: {fileID: 7085183260481501456}
-  combat: {fileID: 4526628964665957507}
-  movement: {fileID: 6256461773109664432}
-  movementIA: {fileID: -8448466628815529265, guid: 7dbbb6b96c3aeac46907f95ffd2da4fc,
-    type: 3}
-  rsoPlayerTransform: {fileID: 11400000, guid: 2bb91fd9d58091e4c96cf498c1a522bd, type: 2}
-  rseSetCamTarget: {fileID: 11400000, guid: 916276e0c677eca45867c28b7664ea28, type: 2}
 --- !u!1 &8193277978739381425
 GameObject:
   m_ObjectHideFlags: 0

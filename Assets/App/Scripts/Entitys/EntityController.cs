@@ -1,5 +1,5 @@
 using UnityEngine;
-public class EntityMotor : MonoBehaviour
+public class EntityController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] EntityStatistics statistics;

@@ -1,22 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMotor : EntityMotor
+public class PlayerController : EntityController
 {
     //[Header("Settings")]
     [Header("References")]
     [SerializeField] InputActionReference movementIA;
 
     [Space(10)]
-    // RSO
     [SerializeField] RSO_PlayerTransform rsoPlayerTransform;
-
-    // RSF
-    // RSP
-
-    //[Header("Input")]
-    [Header("Output")]
-    [SerializeField] RSE_SetCameraTarget rseSetCamTarget;
 
     private void Awake()
     {
@@ -31,7 +23,7 @@ public class PlayerMotor : EntityMotor
     protected override void Start()
     {
         base.Start();
-        rseSetCamTarget.Invoke(transform);
+        CameraController.SetTarget(transform);
     }
 
     private void Update()

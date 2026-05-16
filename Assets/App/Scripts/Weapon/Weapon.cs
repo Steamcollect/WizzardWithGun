@@ -21,7 +21,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected EntityStatistics statistics;
 
-    public Action<EntityMotor> onDamageApplyToEntity;
+    public Action<EntityController> onDamageApplyToEntity;
 
     #region Exposed Methods
     public Weapon Initialize(MVsPool<Weapon> pool)

@@ -22,7 +22,6 @@ public class Weapon_Gun : Weapon
     Coroutine musleFlashCoroutine;
 
     [Header("Output")]
-    [SerializeField] RSE_CameraShoke rseCamShoke;
     [SerializeField] RSF_GetProjectile rsfGetBullet;
 
     #region Exposed Methods
@@ -47,14 +46,14 @@ public class Weapon_Gun : Weapon
         if (musleFlashCoroutine != null) StopCoroutine(musleFlashCoroutine);
         StartCoroutine(MusleFlashAnimation());
 
-        rseCamShoke.Invoke(camShokeRange);
+        CameraController.Shoke(camShokeRange);
     }
     #endregion Exposed Methods
 
     #region Methods
     void OnBulletTouchSomething(Projectile bullet, Collider touch)
     {
-        if(touch.TryGetComponent(out EntityMotor entity))
+        if(touch.TryGetComponent(out EntityController entity))
         {
             onDamageApplyToEntity?.Invoke(entity);
         }
