@@ -21,12 +21,12 @@
   <Project Path="Unity.Burst.CodeGen.csproj" />
   <Project Path="Unity.Services.Core.csproj" />
   <Project Path="Unity.PerformanceTesting.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="UnityEditor.Purchasing.csproj" />
   <Project Path="Unity.Services.Analytics.Editor.csproj" />
   <Project Path="Unity.Burst.Editor.csproj" />
   <Project Path="Unity.Rider.Editor.csproj" />
   <Project Path="UnityEngine.Purchasing.AppleMacosStub.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.AI.Navigation.Updater.csproj" />
   <Project Path="UnityEngine.Purchasing.Codeless.csproj" />
   <Project Path="Unity.Analytics.DataPrivacy.csproj" />

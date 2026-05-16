@@ -21,9 +21,6 @@ public class Weapon_Gun : Weapon
     
     Coroutine musleFlashCoroutine;
 
-    [Header("Output")]
-    [SerializeField] RSF_GetProjectile rsfGetBullet;
-
     #region Exposed Methods
     public override void StartAttack(Vector3 lookDir)
     {
@@ -34,7 +31,7 @@ public class Weapon_Gun : Weapon
         if(posY < .3f) posY = .3f;
         else if(posY > 1.3f) posY = 1.3f;
 
-        Projectile bullet = rsfGetBullet.Invoke(projectileType);
+        Projectile bullet = ProjectilePoolManager.GetProjectile(projectileType);
         bullet.transform.position = new Vector3(bulletSpawnPoint.position.x, posY, bulletSpawnPoint.position.z);
 
         bullet.ShootSetup(lookDir, bulletSpeed, OnBulletTouchSomething);
@@ -46,7 +43,7 @@ public class Weapon_Gun : Weapon
         if (musleFlashCoroutine != null) StopCoroutine(musleFlashCoroutine);
         StartCoroutine(MusleFlashAnimation());
 
-        CameraController.Shoke(camShokeRange);
+        CameraController.Shock(camShokeRange);
     }
     #endregion Exposed Methods
 

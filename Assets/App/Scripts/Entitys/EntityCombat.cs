@@ -5,14 +5,11 @@ public abstract class EntityCombat : MonoBehaviour
     [Header("Main References")]
     protected Weapon weapon;
     protected EntityStatistics statistics;
-    
-    [Space]
-    [SerializeField] protected RSF_GetWeapon rsfGetWeapon;
 
     public EntityCombat Initialize(EntityStatistics statistics)
     {
         this.statistics = statistics;
-        HandleWeapon(rsfGetWeapon.Invoke(statistics.SpawningWeapon.GetRandomWeapon().Type));
+        HandleWeapon(WeaponPoolManager.GetWeapon(statistics.SpawningWeapon.GetRandomWeapon().Type));
         
         return this;
     }

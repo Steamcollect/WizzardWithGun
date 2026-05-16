@@ -49,9 +49,9 @@ public class CameraController : MonoBehaviour
         if (instance != null) instance._SetTarget(target);
     }
 
-    public static void Shoke(float force)
+    public static void Shock(float force)
     {
-        if (instance != null) instance._Shoke(force);
+        if (instance != null) instance._Shock(force);
     }
     #endregion Exposed Methods
 
@@ -61,7 +61,7 @@ public class CameraController : MonoBehaviour
         this.target = target;
     }
 
-    void _Shoke(float force)
+    void _Shock(float force)
     {
         Vector3 pos = Random.onUnitSphere * force;
         transform.position += pos;

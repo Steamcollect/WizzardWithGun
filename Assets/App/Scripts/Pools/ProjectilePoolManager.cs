@@ -6,16 +6,12 @@ public class ProjectilePoolManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] MVsPool<Projectile>[] projectiles;
 
-    [Header("References")]
-    [SerializeField] RSF_GetProjectile rsfGetProjetctile;
+    static ProjectilePoolManager instance;
 
-    private void OnEnable()
+    private void Awake()
     {
-        rsfGetProjetctile.Add(GetProjectile);
-    }
-    private void OnDisable()
-    {
-        rsfGetProjetctile.Remove(GetProjectile);
+        if (instance != null) Destroy(gameObject);
+        else instance = this;
     }
 
     private void Start()
@@ -26,7 +22,13 @@ public class ProjectilePoolManager : MonoBehaviour
         }
     }
 
-    Projectile GetProjectile(ProjectileType type)
+    public static Projectile GetProjectile(ProjectileType type)
+    {
+        if (instance != null) return instance._GetProjectile(type);
+        else return null;
+    }
+
+    Projectile _GetProjectile(ProjectileType type)
     {
         if (projectiles[(int)type].TryGet(out Projectile p))
         {

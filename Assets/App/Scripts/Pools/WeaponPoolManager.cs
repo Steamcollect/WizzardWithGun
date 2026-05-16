@@ -6,16 +6,12 @@ public class WeaponPoolManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] MVsPool<Weapon>[] weapons;
 
-    [Header("References")]
-    [SerializeField] RSF_GetWeapon rsfGetWeapon;
+    static WeaponPoolManager instance;
 
-    private void OnEnable()
+    private void Awake()
     {
-        rsfGetWeapon.Add(GetWeapon);
-    }
-    private void OnDisable()
-    {
-        rsfGetWeapon.Remove(GetWeapon);
+        if (instance != null) Destroy(gameObject);
+        else instance = this;
     }
 
     private void Start()
@@ -26,7 +22,13 @@ public class WeaponPoolManager : MonoBehaviour
         }
     }
 
-    Weapon GetWeapon(WeaponType type)
+    public static Weapon GetWeapon(WeaponType type)
+    {
+        if(instance != null) return instance._GetWeapon(type);
+        else return null;
+    }
+
+    Weapon _GetWeapon(WeaponType type)
     {
         if (weapons[(int)type].TryGet(out Weapon w))
         {
